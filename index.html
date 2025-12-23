@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Matrix — Discord-бот раздач</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-logo matrix-ring">
+          <img
+            src="https://cdn.discordapp.com/avatars/1122172697644912736/a043ae09a8d02cbfc14b3f5d9340f51b.webp?size=128"
+            alt="Matrix bot"
+          >
+        </div>
+        <div class="nav-title" data-i18n="nav.title">Matrix • discord бот</div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#features" data-i18n="nav.features">Возможности</a>
+        <a href="#examples" data-i18n="nav.examples">Примеры</a>
+        <a href="#guilds" data-i18n="nav.guilds">Для сервера</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      </div>
+
+      <div class="nav-actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button class="lang-btn" type="button" data-lang="ru">RU</button>
+          <button class="lang-btn" type="button" data-lang="en">EN</button>
+        </div>
+
+        <button class="nav-support" type="button" data-support-open>
+          <span class="nav-support-emoji">💛</span>
+          <span class="nav-support-text" data-i18n="nav.support">Поддержать</span>
+        </button>
+
+        <a
+          href="https://discord.com/oauth2/authorize?client_id=1122172697644912736&scope=bot%20applications.commands"
+          class="nav-cta"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <span class="nav-cta-icon">+</span>
+          <span class="nav-cta-text" data-i18n="nav.addbot">Добавить бота</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div>
+        <div class="hero-badge">
+          <span>matrix#8445</span>
+        </div>
+
+        <h1 class="hero-title" data-i18n="hero.title">
+          Бот, который сам находит раздачи и шлёт их в твой Discord.
+        </h1>
+
+        <p class="hero-sub"><strong>Matrix</strong> <span data-i18n="hero.sub">отслеживает раздачи игр и DLC (Epic Games, Steam; GOG — частично) и отправляет уведомления в Discord в формате embed.</span></p>
+
+        <div class="hero-actions" id="invite">
+          <a
+            href="https://discord.com/oauth2/authorize?client_id=1122172697644912736&scope=bot%20applications.commands"
+            class="btn btn-primary"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <span>➕</span> <span data-i18n="hero.invite">Пригласить Matrix на сервер</span>
+          </a>
+
+          <a href="#examples" class="btn btn-ghost" data-i18n="hero.see">
+            Смотреть, как выглядит выдача
+          </a>
+        </div>
+
+        <!-- FIX: никаких "<strong>Sources</strong>" в строках, всё разнесено -->
+        <div class="hero-meta">
+          <span>
+            <strong data-i18n="hero.meta.sourcesLabel">Источники:</strong>
+            <span data-i18n="hero.meta.sourcesValue">Epic Games, Steam; GOG — частично</span>
+          </span>
+
+          <span>
+            <strong data-i18n="hero.meta.setupLabel">Настройка:</strong>
+            <span data-i18n="hero.meta.setupValue">по запросу под ваш сервер</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- mock -->
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <div class="hero-card-user">
+            <div class="hero-avatar-wrap">
+              <div class="hero-avatar matrix-ring" style="width:40px;height:40px;">
+                <img
+                  class="hero-avatar-img"
+                  src="https://cdn.discordapp.com/avatars/1122172697644912736/a043ae09a8d02cbfc14b3f5d9340f51b.webp?size=128"
+                  alt="Matrix bot"
+                >
+              </div>
+              <div class="hero-status"></div>
+            </div>
+            <div>
+              <div class="hero-card-name">Matrix</div>
+              <div class="hero-card-tag" data-i18n="hero.cardTag">БОТ • matrix#8445</div>
+            </div>
+          </div>
+          <div class="hero-chip" data-i18n="hero.chip">бот</div>
+        </div>
+
+        <div class="hero-card-body">
+          <div class="hero-command">
+            <span>/giveaways</span> • <span data-i18n="hero.lastGiveaway">последняя активная раздача</span>
+          </div>
+          <div class="hero-embed">
+            <div class="hero-embed-title">The Jackbox Party Pack 4</div>
+            <div class="hero-embed-desc" data-i18n="hero.embedDesc">
+              100% скидка в магазине. Забери, пока не закончилось.
+            </div>
+            <div class="hero-embed-meta">
+              <span data-i18n="hero.embedMeta1">Цена: $0.00 (-100%)</span>
+              <span data-i18n="hero.embedMeta2">Тип: Game</span>
+              <span data-i18n="hero.embedMeta3">До: 11 декабря, 16:00 UTC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features">
+      <div class="section-head">
+        <h2 class="section-title" data-i18n="features.title">Что делает Matrix</h2>
+        <p class="section-sub" data-i18n="features.sub">
+          Matrix находит раздачи игр и DLC и отправляет уведомления в выбранный канал.
+          Доп. настройки под сервер возможны по запросу.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3 class="feature-title" data-i18n="features.c1t">Поиск раздач</h3>
+          <p class="feature-text" data-i18n="features.c1d">
+            Проверяет источники раздач: Epic Games и Steam, GOG — частично. Берёт только реально бесплатное.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">📢</div>
+          <h3 class="feature-title" data-i18n="features.c2t">Уведомления в канал</h3>
+          <p class="feature-text" data-i18n="features.c2d">
+            Уведомления идут в один выбранный канал на сервере. Формат — Discord embed.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <h3 class="feature-title" data-i18n="features.c3t">Команды под сервер</h3>
+          <p class="feature-text" data-i18n="features.c3d">
+            Если надо — можно адаптировать команды/поведение под конкретный сервер. Панели настроек нет.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXAMPLES -->
+    <section id="examples">
+      <div class="section-head">
+        <h2 class="section-title" data-i18n="examples.title">Как выглядят уведомления</h2>
+        <p class="section-sub" data-i18n="examples.sub">
+          Примеры embed-сообщений как в Discord: заголовок, описание, цена, даты и обложка.
+        </p>
+      </div>
+
+      <div class="examples-grid">
+        <article class="embed-card embed-card--active">
+          <div class="embed-top">
+            <div class="store-icon">
+              <img src="img/Epic_Games.png" alt="Epic Games">
+            </div>
+            <div class="embed-provider">Epic Games</div>
+          </div>
+
+          <h3 class="embed-title">
+            <a href="https://store.epicgames.com/" target="_blank" rel="noreferrer noopener">
+              The Jackbox Party Pack 4
+            </a>
+          </h3>
+
+          <p class="embed-desc">
+            Example text like in Discord embed.
+          </p>
+
+          <div class="embed-grid">
+            <div>
+              <div class="embed-label">Price</div>
+              <div class="embed-value">
+Discount: -100%
+Original price: $24.99
+Final price: $0.0
+              </div>
+            </div>
+            <div>
+              <div class="embed-label">Type</div>
+              <div class="embed-value">Game</div>
+            </div>
+          </div>
+
+          <div class="embed-date">
+            <div class="embed-label">Date</div>
+            <div class="embed-value">
+Start: 04 December 2025, 16:00 UTC
+End: 11 December 2025, 16:00 UTC
+            </div>
+          </div>
+
+          <div class="embed-image">
+            <img src="https://cdn1.epicgames.com/offer/snowdrop/PP4_WideImage_2560x1440-af8d584f847d181c0831ad238cfc4076" alt="">
+          </div>
+
+          <div class="embed-footer">
+            <div class="creator-avatar matrix-ring">
+              <img src="https://avatars.githubusercontent.com/u/122186111?v=4" alt="Privett">
+            </div>
+            <span>Created by Privett</span>
+          </div>
+        </article>
+
+        <article class="embed-card embed-card--ended">
+          <div class="embed-top">
+            <div class="store-icon">
+              <img src="img/Epic_Games.png" alt="Epic Games">
+            </div>
+            <div class="embed-provider">Epic Games</div>
+          </div>
+
+          <h3 class="embed-title">
+            <a href="https://store.epicgames.com/" target="_blank" rel="noreferrer noopener">
+              The Darkside Detective [Giveaway : END]
+            </a>
+          </h3>
+
+          <p class="embed-desc">
+            Example ended giveaway.
+          </p>
+
+          <div class="embed-grid">
+            <div>
+              <div class="embed-label">Price</div>
+              <div class="embed-value">
+Discount: -100%
+Original price: $14.99
+Final price: $0.0
+              </div>
+            </div>
+            <div>
+              <div class="embed-label">Type</div>
+              <div class="embed-value">Game</div>
+            </div>
+          </div>
+
+          <div class="embed-date">
+            <div class="embed-label">Date</div>
+            <div class="embed-value">
+Start: 04 December 2025, 16:00 UTC
+End: 11 December 2025, 16:00 UTC
+            </div>
+          </div>
+
+          <div class="embed-image">
+            <img src="https://cdn1.epicgames.com/spt-assets/f91b4d1e5d1348b4a4ad37de00258464/the-darkside-detective-offer-1uv10.jpg" alt="">
+          </div>
+
+          <div class="embed-footer">
+            <div class="creator-avatar matrix-ring">
+              <img src="https://avatars.githubusercontent.com/u/122186111?v=4" alt="Privett">
+            </div>
+            <span>Created by Privett</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- GUILDS -->
+    <section id="guilds">
+      <div class="section-head">
+        <h2 class="section-title" data-i18n="guilds.title">Под каждый сервер — свои правила</h2>
+        <p class="section-sub" data-i18n="guilds.sub">
+          По запросу можно адаптировать команды или поведение Matrix под конкретный сервер.
+        </p>
+      </div>
+
+      <div class="guild-layout">
+        <article class="guild-card">
+          <div class="feature-item feature-item--config">
+            <div class="feature-icon">⚙️</div>
+            <h3 class="feature-title" data-i18n="guilds.cardTitle">Как это работает</h3>
+
+            <ul class="feature-list">
+              <li data-i18n="guilds.li1">
+                <strong>Команды/поведение — по запросу.</strong> Если нужно, я могу подстроить Matrix под конкретный сервер.
+              </li>
+              <li data-i18n="guilds.li2">
+                <strong>Один канал для уведомлений.</strong> Все раздачи игр и DLC отправляются в один выбранный канал.
+              </li>
+              <li data-i18n="guilds.li3">
+                <strong>Фильтры — внутри бота.</strong> Пользовательских фильтров сейчас нет.
+              </li>
+              <li data-i18n="guilds.li4">
+                <strong>Локализация — позже.</strong> Сейчас один формат дат/времени, позже добавлю локализацию.
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="stepper">
+          <div class="steps-grid">
+            <div class="step-item">
+              <div class="step-label" data-i18n="steps.s1l">Шаг 1</div>
+              <h3 class="step-title" data-i18n="steps.s1t">Пригласи Matrix</h3>
+              <p class="step-text" data-i18n="steps.s1d">
+                Добавь бота по ссылке выше и выдай ему права на чтение и отправку сообщений в нужных каналах.
+              </p>
+            </div>
+
+            <div class="step-item">
+              <div class="step-label" data-i18n="steps.s2l">Шаг 2</div>
+              <h3 class="step-title" data-i18n="steps.s2t">Выбери канал для уведомлений</h3>
+              <p class="step-text">
+                <span data-i18n="steps.s2d1">Открой тот текстовый канал на сервере, куда хочешь получать раздачи, и напиши в нём команду</span>
+                <code class="cmd">/addchannel role:@game_giveaway giveaway_delete:Yes</code>
+                <span data-i18n="steps.s2d2">Matrix привяжет этот канал и будет отправлять все уведомления туда.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="section-head">
+        <h2 class="section-title" data-i18n="faq.title">Ответы на частые вопросы</h2>
+        <p class="section-sub" data-i18n="faq.sub">
+          Если чего-то не хватает или нужна другая логика — можно обсудить и добавить по запросу.
+        </p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-q" data-i18n="faq.q1">Matrix бесплатный?</div>
+          <div class="faq-a" data-i18n="faq.a1">
+            Да, сейчас Matrix бесплатный. Поддержка (Patreon/крипта) — добровольная.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" data-i18n="faq.q2">Нужны ли права администратора?</div>
+          <div class="faq-a" data-i18n="faq.a2">
+            Нет. Достаточно прав на чтение/отправку сообщений в выбранном канале.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" data-i18n="faq.q3">Какие площадки поддерживаются?</div>
+          <div class="faq-a" data-i18n="faq.a3">
+            Epic Games и Steam. GOG — частично.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" data-i18n="faq.q4">Можно ли сделать настройки только для одного сервера?</div>
+          <div class="faq-a" data-i18n="faq.a4">
+            Да. Если нужно особое поведение/команды — можно договориться и сделать под ваш сервер.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <span data-i18n="footer.copy">© 2025 Matrix Bot.</span>
+      <div class="footer-links">
+        <a href="#" data-i18n="footer.support">Сервер поддержки</a>
+        <a href="#" data-i18n="footer.sitecode">GitHub (код сайта)</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- SUPPORT MODAL -->
+  <div class="modal" id="support-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-support-close></div>
+
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="support-title">
+      <div class="modal-head">
+        <h3 class="modal-title" id="support-title" data-i18n="support.title">Поддержать Matrix</h3>
+        <button class="modal-x" type="button" aria-label="Close" data-support-close>×</button>
+      </div>
+
+      <p class="modal-sub" data-i18n="support.sub">
+        Matrix бесплатный. Поддержка добровольная — чтобы проект не замораживался.
+      </p>
+
+      <div class="support-options">
+        <article class="support-card-mini">
+          <div class="support-top">
+            <div class="support-title">USDT</div>
+            <span class="support-badge">TON</span>
+          </div>
+          <div class="support-address" data-copy="UQATIXBknZ3LbNDdDcupXubAXgNivg8cHyUuqa5MQL6eV_bU">
+            <code>UQATIXBknZ3LbNDdDcupXubAXgNivg8cHyUuqa5MQL6eV_bU</code>
+          </div>
+          <div class="support-row">
+            <button class="support-copy" type="button" data-copy-btn data-i18n="support.copy">📋 Копировать</button>
+            <div class="support-hint" data-i18n="support.tonHint">Отправляй строго в сети TON</div>
+          </div>
+        </article>
+
+        <article class="support-card-mini">
+          <div class="support-top">
+            <div class="support-title">USDT</div>
+            <span class="support-badge">TRC-20</span>
+          </div>
+          <div class="support-address" data-copy="TQ8UC2KZCUxmLoDBmuJTyxAQA86NiJ446m">
+            <code>TQ8UC2KZCUxmLoDBmuJTyxAQA86NiJ446m</code>
+          </div>
+          <div class="support-row">
+            <button class="support-copy" type="button" data-copy-btn data-i18n="support.copy">📋 Копировать</button>
+            <div class="support-hint" data-i18n="support.trcHint">Отправляй строго в сети TRC-20</div>
+          </div>
+        </article>
+
+        <!-- <article class="support-card-mini support-card-mini--wide">
+          <div class="support-top">
+            <div class="support-title" data-i18n="support.patreonTitle">Подписка</div>
+            <span class="support-badge">Patreon</span>
+          </div>
+          <p class="modal-sub" style="margin:0;" data-i18n="support.patreonSub">
+            Если хочешь поддерживать регулярно — можно через Patreon.
+          </p>
+          <div class="support-row" style="margin-top:10px;">
+            <a class="btn btn-primary" href="PUT_YOUR_PATREON_LINK_HERE" target="_blank" rel="noreferrer noopener">
+              ❤️ <span data-i18n="support.patreonBtn">Открыть Patreon</span>
+            </a>
+            <button class="btn btn-ghost" type="button" data-support-close data-i18n="support.close">Закрыть</button>
+          </div>
+        </article> -->
+
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Matrix — Discord-бот раздач</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-logo matrix-ring">
+            <img
+            src="https://cdn.discordapp.com/avatars/1122172697644912736/a043ae09a8d02cbfc14b3f5d9340f51b.webp?size=128"
+            alt="Matrix бот"
+            >
+        </div>
+        <div class="nav-title">Matrix • discord бот</div>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Возможности</a>
+        <a href="#examples">Примеры</a>
+        <a href="#guilds">Для сервера</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-support" type="button" data-support-open>
+          💛 Поддержать
+        </button>
+        <a href="https://discord.com/oauth2/authorize?client_id=1122172697644912736" class="nav-cta" target="_blank" rel="noreferrer noopener">
+            <span class="nav-cta-icon">+</span>
+            <span class="nav-cta-text">Добавить бота</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div>
+        <div class="hero-badge">
+          <span>matrix#8445</span>
+        </div>
+        <h1 class="hero-title">Бот, который сам находит раздачи и шлёт их в твой Discord.</h1>
+        <p class="hero-sub">
+          <strong>Matrix</strong> отслеживает раздачи игр и DLC (Epic Games, Steam; GOG — частично)
+          и отправляет уведомления в Discord в формате embed.
+        </p>
+        <div class="hero-actions" id="invite">
+          <!-- сюда подставь свой OAuth2-инвайт -->
+          <a href="https://discord.com/oauth2/authorize?client_id=1122172697644912736" class="btn btn-primary" target="_blank" rel="noreferrer noopener">
+            <span>➕</span> Пригласить Matrix на сервер
+          </a>
+          <a href="#examples" class="btn btn-ghost">
+            Смотреть, как выглядит выдача
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span><strong>Источники:</strong> Epic Games, Steam; GOG — частично</span>
+          <span><strong>Настройка:</strong> по запросу под ваш сервер</span>
+        </div>
+      </div>
+
+      <!-- Небольшая "симуляция" сообщения бота -->
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <div class="hero-card-user">
+            <div class="hero-avatar-wrap">
+              <div class="hero-avatar matrix-ring" style="width:40px;height:40px;">
+                <img
+                class="hero-avatar-img"
+                src="https://cdn.discordapp.com/avatars/1122172697644912736/a043ae09a8d02cbfc14b3f5d9340f51b.webp?size=128"
+                alt="Matrix бот"
+                >
+              </div>
+              <div class="hero-status"></div>
+            </div>
+            <div>
+              <div class="hero-card-name">Matrix</div>
+              <div class="hero-card-tag">БОТ • matrix#8445</div>
+            </div>
+          </div>
+          <div class="hero-chip">бот</div>
+        </div>
+
+        <div class="hero-card-body">
+          <div class="hero-command">
+            <span>/giveaways</span> • последняя активная раздача
+          </div>
+          <div class="hero-embed">
+            <div class="hero-embed-title">The Jackbox Party Pack 4</div>
+            <div class="hero-embed-desc">
+              100% скидка в Epic Games Store. Забери, пока не закончилось.
+            </div>
+            <div class="hero-embed-meta">
+              <span>Цена: $0.00 (-100%)</span>
+              <span>Тип: Game</span>
+              <span>До: 11 декабря, 16:00 UTC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features">
+      <div class="section-head">
+        <h2 class="section-title">Что делает Matrix</h2>
+        <p class="section-sub">
+          Matrix находит раздачи игр и DLC и отправляет уведомления в выбранный канал.
+          Доп. настройки под сервер возможны по запросу.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3 class="feature-title">Поиск раздач</h3>
+          <p class="feature-text">
+            Matrix периодически проверяет источники раздач: Epic Games и Steam, GOG — частично.
+            Сохраняет только реально бесплатные предложения.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">📢</div>
+          <h3 class="feature-title">Уведомления в канал</h3>
+          <p class="feature-text">
+            Уведомления приходят в один выбранный канал на сервере. Формат — Discord embed:
+            название, описание, цены/скидка и даты.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <h3 class="feature-title">Команды под гильдию</h3>
+          <p class="feature-text">
+            При необходимости можно сделать разные команды/поведение для разных серверов.
+            Пользовательских фильтров и панели настроек сейчас нет.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXAMPLES -->
+    <section id="examples">
+    <div class="section-head">
+        <h2 class="section-title">Как выглядят уведомления</h2>
+        <p class="section-sub">
+        Примеры embed-сообщений один в один с тем, что Matrix отправляет в Discord.
+        Заголовок, описание, цена, даты и обложка игры — всё в одном аккуратном блоке.
+        </p>
+    </div>
+
+    <div class="examples-grid">
+        <!-- Jackbox – активная раздача -->
+        <article class="embed-card embed-card--active">
+        <div class="embed-top">
+            <div class="store-icon">
+                <img
+                src="https://lh3.googleusercontent.com/fife/ALs6j_Ec4MojIF8QaHC3px3QW4xCNV2xtuaTSunpYcuDLgSxshZd1RT8ar2F6ipcXb3SRcBMADWTWbKB8YXe4WM-FpYRpblCQDWO741JXSK8yEf6Kos0gv6HXuObgnS3r8Clldzs72drHsEKAqQ-xXuLGOtUFF2UBMi-v3tjNSFkGZa_Bw-y0X0thj7q_6FDy7YKD4mt4j58JIXh7Mr38v6ZvsG_GuN_9WHJLQOOBxnzKMUqrzdHRyvtRR9s4O2fAwjVBJYiR9TYOUPn9lJTU5WCRAe_srxZCfwl0FFMGPqD2b75ex9AuhVhobDIcLZ7vgV9zE8m2yg9RgR70yKwB2u7T4EZ6ghQmMmKKhE5JbrHugwi1nJXCqzVdIWlcybnOJUZowaBinPFBvb5CkpIddRUl4K-yljY8RR71W_iFXOcw2txBqsddZVhuVd9RZhzS1P-idwG9S3fkWj4b8y5dtM-FJEvPQej3xtwhLNfiLQPIR7LAezJVjJSWWBP3TlvJrzKewMlGSmhh-pbvSxxgVLyIP6YeMsNvvEOk092vL6AxGKH9DGPbO56DtGsfKNkg8Vgl3ZW1TxuOfGjSqQmoGWO4WlYT7RSPt600FFNNrl-Fthn6gLbOYgaZJFa5sPr1btfU_CLkAObRtMqss10foXTL2CLaIqEI2NGglh3IgYtZzRfZOLBW0eT60mq2IKkPKf-wcZdyOnNCUWWahUyv57p_YKogm36aMsfoTo7JzUoLsnNHYl6zOwqs9p1ybe2k0R-ylCSLN_-36Ybfk9pXRgvmz_rpxLmcaYWxOAzQmQiCZaZZgPlFmkf_pbxA_7_WeIhX6csdEajJGuOZfl33cudYHNh0t15dTbFSHpfWrmwtI5rd3Obs50tL_gfZs11b7DNsLT5jmGgz6fyoMM81Zf4F18HA8h71RWUUtbCP32YP2XSXE5xdK3v7fqug_oS7gA0uSJ6iSSusO1VI2zRIbMbTad1VYHCJAocP5jnD3L2UGyYL8aTZOBV53blhxNV-ok69QdRowLRfjmXzWq1cgWGIzS96czKmt3NwP8XuwhYQ9MnAiOx0J_73v_hyMyH4sOox-7rNTZtnJyFDYOd2WgvanTSifBfy1JPRoB9snCCjHXiyxolOp_PvtnmJeWiA_9HluqQApgbAmA8ZAZF6_htQtib2cT806DJ3SW-lj4iguskkJ2x1I4hhrOE9wqblLYskuWXWBiEWwmea3WSeTmxDYT69VOZoyaOxTinAKOgkzHIoJru8Wp2ZaP6tFhNEYm-b_perdXo44vaETg-DZ_RywoMi0DWJFa9RGrdIKWrxgas7ta7H4hwO_ts5iweEhbVLC2wimQTHKxO-akIRO5jTPSxdbLyaRelXt43dFDmDxsHWDMRFIyAnfF-Cqis0QkirVY1qx4vXgyfaiCuY3wJVhcvOQ9oCBSZbKr8I4NlZwcQ4R4StRSSfan45h5eRwoLShGWTfqUrD__9Pd9rG2hPQW-nr-Nn44R9czt3IjSIlfLfd4wfeHNPwBf2dA0Jex6fZ0vINMUcy3Ix1l7Go1q6le1K7ipjjwmhkJSNyKEKXQ96DdXowaUguq_cd09Dbc6MQoPxA6WUBSChR-Wqg=w1440-h773"
+                alt="Epic Games"
+                >
+            </div>
+            <div class="embed-provider">Epic Games</div>
+        </div>
+
+        <h3 class="embed-title">
+            <a href="https://store.epicgames.com/p/jackbox-party-pack-4"
+            target="_blank" rel="noreferrer noopener">
+            The Jackbox Party Pack 4
+            </a>
+        </h3>
+
+        <p class="embed-desc">
+            The biggest and fourthiest addition to this storied party game franchise
+            features not five but FIVE AND A HALF crowd-slaying games!
+        </p>
+
+        <div class="embed-grid">
+            <div>
+            <div class="embed-label">Price</div>
+            <div class="embed-value">
+    Discount: -100%
+    Original price: $24.99
+    Final price: $0.0
+            </div>
+            </div>
+            <div>
+            <div class="embed-label">Type</div>
+            <div class="embed-value">Game</div>
+            </div>
+        </div>
+
+        <div class="embed-date">
+            <div class="embed-label">Date</div>
+            <div class="embed-value">
+    Start: 04 December 2025, 16:00 UTC
+    End: 11 December 2025, 16:00 UTC
+            </div>
+        </div>
+
+        <div class="embed-image">
+            <img
+            src="https://cdn1.epicgames.com/offer/snowdrop/PP4_WideImage_2560x1440-af8d584f847d181c0831ad238cfc4076"
+            alt="The Jackbox Party Pack 4"
+            />
+        </div>
+
+        <div class="embed-footer">
+        <div class="creator-avatar matrix-ring">
+            <img
+            src="https://avatars.githubusercontent.com/u/122186111?v=4"
+            alt="Privett"
+            >
+        </div>
+        <span>Created by Privett</span>
+        </div>
+        </article>
+
+        <!-- Darkside Detective – раздача закончилась -->
+        <article class="embed-card embed-card--ended">
+        <div class="embed-top">
+            <div class="store-icon">
+                <img
+                src="https://lh3.googleusercontent.com/fife/ALs6j_Ec4MojIF8QaHC3px3QW4xCNV2xtuaTSunpYcuDLgSxshZd1RT8ar2F6ipcXb3SRcBMADWTWbKB8YXe4WM-FpYRpblCQDWO741JXSK8yEf6Kos0gv6HXuObgnS3r8Clldzs72drHsEKAqQ-xXuLGOtUFF2UBMi-v3tjNSFkGZa_Bw-y0X0thj7q_6FDy7YKD4mt4j58JIXh7Mr38v6ZvsG_GuN_9WHJLQOOBxnzKMUqrzdHRyvtRR9s4O2fAwjVBJYiR9TYOUPn9lJTU5WCRAe_srxZCfwl0FFMGPqD2b75ex9AuhVhobDIcLZ7vgV9zE8m2yg9RgR70yKwB2u7T4EZ6ghQmMmKKhE5JbrHugwi1nJXCqzVdIWlcybnOJUZowaBinPFBvb5CkpIddRUl4K-yljY8RR71W_iFXOcw2txBqsddZVhuVd9RZhzS1P-idwG9S3fkWj4b8y5dtM-FJEvPQej3xtwhLNfiLQPIR7LAezJVjJSWWBP3TlvJrzKewMlGSmhh-pbvSxxgVLyIP6YeMsNvvEOk092vL6AxGKH9DGPbO56DtGsfKNkg8Vgl3ZW1TxuOfGjSqQmoGWO4WlYT7RSPt600FFNNrl-Fthn6gLbOYgaZJFa5sPr1btfU_CLkAObRtMqss10foXTL2CLaIqEI2NGglh3IgYtZzRfZOLBW0eT60mq2IKkPKf-wcZdyOnNCUWWahUyv57p_YKogm36aMsfoTo7JzUoLsnNHYl6zOwqs9p1ybe2k0R-ylCSLN_-36Ybfk9pXRgvmz_rpxLmcaYWxOAzQmQiCZaZZgPlFmkf_pbxA_7_WeIhX6csdEajJGuOZfl33cudYHNh0t15dTbFSHpfWrmwtI5rd3Obs50tL_gfZs11b7DNsLT5jmGgz6fyoMM81Zf4F18HA8h71RWUUtbCP32YP2XSXE5xdK3v7fqug_oS7gA0uSJ6iSSusO1VI2zRIbMbTad1VYHCJAocP5jnD3L2UGyYL8aTZOBV53blhxNV-ok69QdRowLRfjmXzWq1cgWGIzS96czKmt3NwP8XuwhYQ9MnAiOx0J_73v_hyMyH4sOox-7rNTZtnJyFDYOd2WgvanTSifBfy1JPRoB9snCCjHXiyxolOp_PvtnmJeWiA_9HluqQApgbAmA8ZAZF6_htQtib2cT806DJ3SW-lj4iguskkJ2x1I4hhrOE9wqblLYskuWXWBiEWwmea3WSeTmxDYT69VOZoyaOxTinAKOgkzHIoJru8Wp2ZaP6tFhNEYm-b_perdXo44vaETg-DZ_RywoMi0DWJFa9RGrdIKWrxgas7ta7H4hwO_ts5iweEhbVLC2wimQTHKxO-akIRO5jTPSxdbLyaRelXt43dFDmDxsHWDMRFIyAnfF-Cqis0QkirVY1qx4vXgyfaiCuY3wJVhcvOQ9oCBSZbKr8I4NlZwcQ4R4StRSSfan45h5eRwoLShGWTfqUrD__9Pd9rG2hPQW-nr-Nn44R9czt3IjSIlfLfd4wfeHNPwBf2dA0Jex6fZ0vINMUcy3Ix1l7Go1q6le1K7ipjjwmhkJSNyKEKXQ96DdXowaUguq_cd09Dbc6MQoPxA6WUBSChR-Wqg=w1440-h773"
+                alt="Epic Games"
+                >
+            </div>
+            <div class="embed-provider">Epic Games</div>
+        </div>
+
+        <h3 class="embed-title">
+            <a href="https://store.epicgames.com/p/the-darkside-detective-02fd5a"
+            target="_blank" rel="noreferrer noopener">
+            The Darkside Detective [Giveaway : END]
+            </a>
+        </h3>
+
+        <p class="embed-desc">
+            Grab your trench coat, tune your sixth sense and join the Darkside Division
+            as they investigate the bizarre, the downright dangerous and the mildly confusing
+            cases of Twin Lakes.
+        </p>
+
+        <div class="embed-grid">
+            <div>
+            <div class="embed-label">Price</div>
+            <div class="embed-value">
+    Discount: -100%
+    Original price: $14.99
+    Final price: $0.0
+            </div>
+            </div>
+            <div>
+            <div class="embed-label">Type</div>
+            <div class="embed-value">Game</div>
+            </div>
+        </div>
+
+        <div class="embed-date">
+            <div class="embed-label">Date</div>
+            <div class="embed-value">
+    Start: 04 December 2025, 16:00 UTC
+    End: 11 December 2025, 16:00 UTC
+            </div>
+        </div>
+
+        <div class="embed-image">
+            <img
+            src="https://cdn1.epicgames.com/spt-assets/f91b4d1e5d1348b4a4ad37de00258464/the-darkside-detective-offer-1uv10.jpg"
+            alt="The Darkside Detective"
+            />
+        </div>
+
+        <div class="embed-footer">
+        <div class="creator-avatar matrix-ring">
+            <img
+            src="https://avatars.githubusercontent.com/u/122186111?v=4"
+            alt="Privett"
+            >
+        </div>
+        <span>Created by Privett</span>
+        </div>
+        </article>
+    </div>
+    </section>
+
+
+    <!-- GUILDS / CUSTOM COMMANDS -->
+    <section id="guilds">
+      <div class="section-head">
+        <h2 class="section-title">Под каждый сервер — свои правила</h2>
+        <p class="section-sub">
+          По запросу можно адаптировать команды или поведение Matrix под конкретный сервер.
+        </p>
+      </div>
+
+      <div class="guild-layout">
+        <article class="guild-card">
+          <div class="feature-item feature-item--config">
+            <div class="feature-icon">⚙️</div>
+            <h3 class="feature-title">Гибкая конфигурация команд</h3>
+
+            <ul class="feature-list">
+              <li>
+                <strong>Отдельные команды для каждой гильдии.</strong>
+                Настройка делается через разработчика бота: по запросу владельца сервера
+                я могу задать свои команды или поведение именно для этой гильдии.
+              </li>
+              <li>
+                <strong>Один канал для уведомлений.</strong>
+                Matrix использует один выбранный текстовый канал на сервере и отправляет
+                туда все раздачи игр и DLC.
+              </li>
+              <li>
+                <strong>Фильтрация вшита в код.</strong>
+                Сейчас логика фильтрации задаётся внутри бота, пользовательских фильтров
+                (типа «только DLC» или «только 100% скидка») пока нет.
+              </li>
+              <li>
+                <strong>Локализация дат и времени — в планах.</strong>
+                Сейчас используется единый формат, позже планирую добавить локализацию,
+                чтобы время отображалось привычнее для участников.
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="stepper">
+          <div class="steps-grid">
+            <div class="step-item">
+              <div class="step-label">Шаг 1</div>
+              <h3 class="step-title">Пригласи Matrix</h3>
+              <p class="step-text">
+                Добавь бота по ссылке выше и выдай ему права на чтение и отправку
+                сообщений в нужных каналах.
+              </p>
+            </div>
+
+            <div class="step-item">
+              <div class="step-label">Шаг 2</div>
+              <h3 class="step-title">Выбери канал для уведомлений</h3>
+              <p class="step-text">
+                Открой <strong>тот текстовый канал</strong> на сервере, куда хочешь получать
+                раздачи, и напиши в нём команду <code>/addchannel</code>. Matrix привяжет
+                именно этот канал и будет отправлять все уведомления туда.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="section-head">
+        <h2 class="section-title">Ответы на частые вопросы</h2>
+        <p class="section-sub">
+          Если чего-то не хватает или нужна другая логика — можно обсудить и добавить по запросу.
+        </p>
+      </div>
+
+      <div class="faq-grid">
+        <!-- 1 строка, левая колонка -->
+        <div class="faq-item">
+          <div class="faq-q">Matrix бесплатный?</div>
+          <div class="faq-a">
+            Да, сейчас Matrix полностью бесплатен. Базовый функционал раздач и
+            команд доступен всем серверам. В будущем могу добавить опциональную
+            поддержку через Patreon, донаты или криптокошелёк, но это будет именно
+            добровольная поддержка, а не обязательная подписка.
+          </div>
+        </div>
+
+        <!-- 1 строка, правая колонка -->
+        <div class="faq-item">
+          <div class="faq-q">Нужны ли права администратора?</div>
+          <div class="faq-a">
+            Нет, права администратора не обязательны. Сейчас Matrixу достаточно
+            уметь читать и отправлять сообщения в выбранных каналах. Если позже
+            будет добавлена работа через вебхуки или более сложные функции,
+            список прав может расшириться.
+          </div>
+        </div>
+
+        <!-- 2 строка, левая колонка -->
+        <div class="faq-item">
+          <div class="faq-q">Какие площадки раздач поддерживаются?</div>
+          <div class="faq-a">
+            Сейчас Matrix отслеживает раздачи из <strong>Epic Games</strong> и
+            <strong>Steam</strong>, а также частично поддерживает <strong>GOG</strong>
+            (логика ещё дорабатывается, поэтому покрытие может быть неполным).
+            По мере развития бота список площадок будет расширяться.
+          </div>
+        </div>
+
+        <!-- 2 строка, правая колонка -->
+        <div class="faq-item">
+          <div class="faq-q">Можно ли сделать свои команды только для одного сервера?</div>
+          <div class="faq-a">
+            Да, но это делается через разработчика бота. Matrix умеет хранить
+            настройки отдельно для каждой гильдии, поэтому кастомные команды
+            под один конкретный сервер настраиваются вручную в конфиге/коде
+            разработчиком.
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <span>© 2025 Matrix Bot.</span>
+      <div class="footer-links">
+        <!-- подставь ссылки, если есть -->
+        <a href="#">Сервер поддержки</a>
+        <a href="#">GitHub (код сайта)</a>
+      </div>
+    </footer>
+  </main>
+
+  <div class="modal" id="support-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-support-close></div>
+
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="support-title">
+      <div class="modal-head">
+        <h3 class="modal-title" id="support-title">Поддержать Matrix</h3>
+        <button class="modal-x" type="button" aria-label="Закрыть" data-support-close>×</button>
+      </div>
+
+      <p class="modal-sub">
+        Matrix бесплатный. Поддержка добровольная — чтобы проект не замораживался.
+      </p>
+
+      <div class="support-options">
+        <!-- USDT TON -->
+        <article class="support-card-mini">
+          <div class="support-top">
+            <div class="support-title">USDT</div>
+            <span class="support-badge">TON</span>
+          </div>
+          <div class="support-address" data-copy="UQATIXBknZ3LbNDdDcupXubAXgNivg8cHyUuqa5MQL6eV_bU">
+            <code>UQATIXBknZ3LbNDdDcupXubAXgNivg8cHyUuqa5MQL6eV_bU</code>
+          </div>
+          <div class="support-row">
+            <button class="btn btn-ghost support-copy" type="button" data-copy-btn>📋 Копировать</button>
+            <div class="support-hint">Отправляй строго в сети TON</div>
+          </div>
+        </article>
+
+        <!-- USDT TRC-20 -->
+        <article class="support-card-mini">
+          <div class="support-top">
+            <div class="support-title">USDT</div>
+            <span class="support-badge">TRC-20</span>
+          </div>
+          <div class="support-address" data-copy="TQ8UC2KZCUxmLoDBmuJTyxAQA86NiJ446m">
+            <code>TQ8UC2KZCUxmLoDBmuJTyxAQA86NiJ446m</code>
+          </div>
+          <div class="support-row">
+            <button class="btn btn-ghost support-copy" type="button" data-copy-btn>📋 Копировать</button>
+            <div class="support-hint">Отправляй строго в сети TRC-20</div>
+          </div>
+        </article>
+
+        <!-- Buy Me a Coffee -->
+        <article class="support-card-mini support-card-mini--wide">
+          <div class="support-top">
+            <div class="support-title">Buy Me a Coffee</div>
+            <span class="support-badge">BMC</span>
+          </div>
+
+          <p class="modal-sub" style="margin:0 0 10px;">
+            Быстрая поддержка проекта через Buy Me a Coffee.
+          </p>
+
+          <a class="btn btn-primary"
+            href="https://www.buymeacoffee.com/onixlol"
+            target="_blank" rel="noreferrer noopener">
+            ☕ Buy me a coffee
+          </a>
+        </article>
+
+        <!-- Patreon (опционально) -->
+        <article class="support-card-mini support-card-mini--wide">
+          <div class="support-top">
+            <div class="support-title">Подписка</div>
+            <span class="support-badge">Patreon</span>
+          </div>
+          <p class="modal-sub" style="margin:0;">
+            Если хочешь поддерживать регулярно — можно через Patreon.
+          </p>
+          <div class="support-row" style="margin-top:10px;">
+            <a class="btn btn-primary" href="PUT_YOUR_PATREON_LINK_HERE" target="_blank" rel="noreferrer noopener">
+              ❤️ Открыть Patreon
+            </a>
+            <button class="btn btn-ghost" type="button" data-support-close>Закрыть</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    const modal = document.getElementById('support-modal');
+    const openBtn = document.querySelector('[data-support-open]');
+    const closeEls = modal.querySelectorAll('[data-support-close]');
+    let lastFocus = null;
+
+    function loadBmcButtonOnce(){
+      const wrap = document.getElementById('bmc-button-wrap');
+      if (!wrap) return;
+
+      // уже загружено
+      if (wrap.dataset.loaded === '1') return;
+      wrap.dataset.loaded = '1';
+
+      const s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = 'https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js';
+
+      // твои параметры
+      s.setAttribute('data-name', 'bmc-button');
+      s.setAttribute('data-slug', 'onixlol');
+      s.setAttribute('data-color', '#FFDD00');
+      s.setAttribute('data-emoji', '');
+      s.setAttribute('data-font', 'Cookie');
+      s.setAttribute('data-text', 'Buy me a coffee');
+      s.setAttribute('data-outline-color', '#000000');
+      s.setAttribute('data-font-color', '#000000');
+      s.setAttribute('data-coffee-color', '#ffffff');
+
+      wrap.appendChild(s);
+    }
+
+    function openModal() {
+      lastFocus = document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      const focusTarget = modal.querySelector('.modal-x');
+      if (focusTarget) focusTarget.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    closeEls.forEach(el => el.addEventListener('click', closeModal));
+
+    // ESC
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+
+    // Copy buttons inside modal
+    modal.addEventListener('click', async (e) => {
+      const btn = e.target.closest('[data-copy-btn]');
+      if (!btn) return;
+
+      const card = btn.closest('.support-card-mini');
+      const box = card?.querySelector('.support-address');
+      const text = box?.getAttribute('data-copy')?.trim();
+      if (!text) return;
+
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+
+      const old = btn.textContent;
+      btn.textContent = '✅ Скопировано';
+      setTimeout(() => btn.textContent = old, 1200);
+    });
+  })();
+  </script>
+</body>
+</html>
