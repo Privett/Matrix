@@ -18,8 +18,8 @@
 * 🚀 **Performance:** Fast, reliable, and online 24/7.
 
 ### 🚀 Getting Started
-1.  **Invite the Bot:** [INSERT_INVITE_LINK_HERE]
-2.  **Support Server:** [INSERT_DISCORD_LINK_HERE]
+1.  **Invite the Bot:** https://discord.com/oauth2/authorize?client_id=1122172697644912736&scope=bot%20applications.commands&permissions=0
+2.  **Support Server:** https://discord.gg/5FC7pRP5dN
 3.  **Command:** Use `/help` to see the list of features.
 
 ### 🛡️ License & Branding
@@ -39,8 +39,8 @@ This project is licensed under the **Apache License 2.0**.
 * ⚡ **Стабильность:** Работа 24/7 и быстрый отклик на команды.
 
 ### 🚀 С чего начать
-1.  **Пригласить бота:** []
-2.  **Сервер поддержки:** [INSERT_DISCORD_LINK_HERE]
+1.  **Пригласить бота:** https://discord.com/oauth2/authorize?client_id=1122172697644912736&scope=bot%20applications.commands&permissions=0
+2.  **Сервер поддержки:** https://discord.gg/5FC7pRP5dN
 3.  **Помощь:** Используйте команду `/help` для просмотра всех функций.
 
 ### 🛡️ Лицензия и Брендинг
