@@ -1,0 +1,15 @@
+/* ===== home.css — только главная страница (index.html): шапка и карточки модулей ===== */
+.wrap{max-width:960px;margin:0 auto;padding:12vh 20px 140px}
+.hero{text-align:center}
+.logo{width:96px;height:96px;border-radius:24px;border:1px solid var(--line);box-shadow:0 0 40px rgba(var(--tint),.35);transition:box-shadow 1s}
+h1{font:600 clamp(48px,11vw,96px)/1 'Unbounded',sans-serif;letter-spacing:-.04em;margin:20px 0 12px}
+.lead{color:var(--muted);font-size:clamp(17px,2.4vw,20px);max-width:36ch;margin:0 auto 28px}
+.cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px;margin-top:80px}
+.mod{display:block;text-decoration:none;color:inherit;padding:20px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid var(--line);backdrop-filter:blur(12px);transition:border-color .3s,background .3s}
+.mod:hover,.mod:focus-visible{border-color:rgba(var(--c),.8);background:rgba(var(--c),.08)}
+.mod h2{font:600 18px/1.2 'Unbounded',sans-serif;margin:0 0 8px}
+.mod p{margin:0 0 14px;color:var(--muted);font-size:15px}
+.mod code{font:13px var(--mono);color:rgb(var(--c))}
+
+

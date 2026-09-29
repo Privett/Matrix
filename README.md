@@ -1,52 +1,47 @@
-# 🟢 Matrix | Giveaway & Custom Logic Bot
+# Matrix — сайт бота
 
-[English](#english) | [Русский](#русский)
+Обычный статический сайт (без сборки). Работает на GitHub Pages: просто положи все файлы в корень репозитория.
 
----
+## Структура
 
-## English <a name="english"></a>
+```
+matrix-site/
+├── index.html            ← главная страница
+├── commands.html         ← страница со всеми командами
+├── css/
+│   ├── base.css          ← общее: ЦВЕТА, фон с кодом, кнопки, нижнее меню
+│   ├── home.css          ← стили только главной
+│   └── commands.css      ← стили только страницы команд
+├── js/
+│   ├── background.js     ← код, который светится на фоне
+│   ├── home.js           ← смена цвета фона при наведении на карточки
+│   ├── commands-data.js  ← ВСЕ команды и тексты (RU/EN)  ← здесь добавляешь команды
+│   └── commands.js       ← логика страницы команд: поиск, фильтры, язык
+└── assets/
+    └── banner-4b/4c/4d.png  ← банеры для top.gg (не нужны сайту, просто хранятся тут)
+```
 
-![License](https://img.shields.io/badge/license-Apache--2.0-green)
-![Status](https://img.shields.io/badge/status-active-brightgreen)
-![Since](https://img.shields.io/badge/since-June%202023-blue)
+## Что где менять
 
-**Matrix** is a powerful Discord bot designed for seamless community engagement. While other bots offer fixed features, Matrix grows with your server by offering custom-built commands.
+| Хочу…                                   | Файл                                   |
+|-----------------------------------------|----------------------------------------|
+| Поменять цвет сайта (жёлтый)            | `css/base.css`, блок `:root` вверху    |
+| Поменять текст на главной / кнопки      | `index.html`                           |
+| Поменять карточки модулей               | `index.html`, блок `<section class="mods">` |
+| Добавить или изменить команду           | `js/commands-data.js`                  |
+| Поменять код, светящийся на фоне        | `js/background.js`                     |
+| Поменять нижнее меню                    | `<nav class="dock">` в обоих html      |
+| Ссылку приглашения / голосования        | `index.html`, блок `<div class="cta">` |
 
-### ✨ Key Features
-* 🎁 **Giveaways:** Easy-to-use system for hosting fair and transparent rewards.
-* 🛠️ **Custom Development:** I build unique commands specifically for your server's needs.
-* 🚀 **Performance:** Fast, reliable, and online 24/7.
+## Как добавить команду
+Открой `js/commands-data.js`, найди модуль в массиве `M` и добавь в его `c:[ ... ]`:
 
-### 🚀 Getting Started
-1.  **Invite the Bot:** [Invite](https://discord.com/oauth2/authorize?client_id=1122172697644912736&scope=bot%20applications.commands&permissions=0)
-2.  **Support Server:** [Support](https://discord.gg/5FC7pRP5dN)
-3.  **Command:** Use `/help` to see the list of features.
+```js
+{c:"/новая", b:{ru:"Описание", en:"Description"}, o:[["параметр",{ru:"что указать",en:"what to enter"}]]}
+```
+`a:1` — пометка «только админам». `note:{ru:"...",en:"..."}` — примечание под таблицей.
 
-### 🛡️ License & Branding
-This project is licensed under the **Apache License 2.0**.
-* **Trademarks:** The name "Matrix" and its logo are unique identifiers.
-* **Forks:** If you fork this project, you **must** change the name and logo to avoid user confusion.
-
----
-
-## Русский <a name="русский"></a>
-
-**Matrix** — это многофункциональный Discord-бот, созданный для автоматизации раздач и реализации уникальных команд под индивидуальные нужды вашего сообщества.
-
-### ✨ Основные возможности
-* 🎁 **Розыгрыши:** Простая и честная система проведения раздач для вашего актива.
-* 🛠️ **Кастомная разработка:** Я создаю уникальные команды по запросу владельцев серверов. Нужна особая фишка? Я её напишу!
-* ⚡ **Стабильность:** Работа 24/7 и быстрый отклик на команды.
-
-### 🚀 С чего начать
-1.  **Пригласить бота:** [Invite](https://discord.com/oauth2/authorize?client_id=1122172697644912736&scope=bot%20applications.commands&permissions=0)
-2.  **Сервер поддержки:** [Support](https://discord.gg/5FC7pRP5dN)
-3.  **Помощь:** Используйте команду `/help` для просмотра всех функций.
-
-### 🛡️ Лицензия и Брендинг
-Проект распространяется под лицензией **Apache 2.0**.
-* **Права:** Использование кода разрешено, однако название "Matrix" и логотип защищены авторским правом данного проекта.
-* **Форки:** При копировании кода вы обязаны сменить название проекта во избежание путаницы среди пользователей.
-
----
-*Created by Matrix Dev (Est. June 2023)*
+## Загрузка на GitHub Pages
+1. Удали старые `index.html` и `css/index.css` из репозитория.
+2. Залей содержимое этой папки в корень репозитория.
+3. Через минуту сайт откроется на `https://privett.github.io/Matrix/`.
