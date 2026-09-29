@@ -1,14 +1,12 @@
-/* commands.js — логика страницы команд: язык RU/EN, поиск, фильтры, копирование.
+/* commands.js — логика страницы команд: поиск, фильтры, копирование.
    Данные берёт из commands-data.js (T и M). Обычно тут ничего менять не нужно. */
-let lang=(navigator.language||"").startsWith("ru")?"ru":"en";
-try{lang=localStorage.getItem("l")||lang}catch(e){}
+let lang=I18N.lang;                                   // язык берём из i18n.js
+document.addEventListener("langchange",e=>{lang=e.detail;render()});
 let mod="all";
 const $=s=>document.querySelector(s), t=k=>T[lang][k];
 
 function render(){
-  document.documentElement.lang=lang;
   $("#sub").textContent=t("sub"); $("#q").placeholder=t("search"); $("#foot").innerHTML=t("foot");
-  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
   $("#chips").innerHTML=[["all",t("all")],...M.map(m=>[m.id,m.n[lang]])].map(([i,n])=>`<button data-m="${i}" aria-pressed="${i===mod}">${n}</button>`).join("");
   const q=$("#q").value.trim().toLowerCase(); let shown=0;
   $("#list").innerHTML=M.filter(m=>mod==="all"||m.id===mod).map(m=>{
@@ -21,7 +19,6 @@ function render(){
   $("#empty").hidden=shown>0; $("#empty").textContent=t("empty");
 }
 document.addEventListener("click",e=>{
-  const l=e.target.closest(".lang button"); if(l){lang=l.dataset.l;try{localStorage.setItem("l",lang)}catch(_){}render();return}
   const c=e.target.closest(".chips button"); if(c){mod=c.dataset.m;render();return}
   const k=e.target.closest(".cmd"); if(k){e.preventDefault();const s=k.textContent;
     (navigator.clipboard?navigator.clipboard.writeText(s):Promise.reject()).then(()=>{k.classList.add("ok");k.textContent=t("copied");setTimeout(()=>{k.classList.remove("ok");k.textContent=s},900)}).catch(()=>{})}

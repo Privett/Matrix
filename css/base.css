@@ -30,4 +30,12 @@ background:rgba(28,24,14,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter
 .dock a{padding:10px 14px;border-radius:12px;color:rgba(255,255,255,.65);text-decoration:none;font-size:15px;white-space:nowrap;transition:background .15s,color .15s}
 .dock a:hover{background:rgba(255,255,255,.08);color:#fff}
 .dock a.on{background:rgba(var(--tint),.2);color:#fff}
+/* --- Переключатель языка в меню --- */
+.dock-lang{display:flex;margin-left:4px;padding-left:8px;border-left:1px solid var(--line)}
+.dock-lang button{background:none;border:0;color:rgba(255,255,255,.65);padding:10px 12px;border-radius:12px;font:inherit;font-size:15px;cursor:pointer;transition:background .15s,color .15s}
+.dock-lang button:hover{background:rgba(255,255,255,.08);color:#fff}
+.dock-lang button[aria-pressed=true]{background:rgba(var(--tint),.2);color:#fff}
+.dock-lang button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media (max-width:520px){.dock a{padding:10px 9px;font-size:14px}.dock a.hide-sm{display:none}.dock-lang button{padding:10px 8px;font-size:14px}}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}

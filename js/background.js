@@ -1,29 +1,53 @@
 /* background.js — заполняет фон кодом. Подключён на всех страницах.
-   Хочешь другой код на фоне — измени текст в snippet. */
-const snippet = `@bot.tree.command(name="addchannel", description=locale_str("add gift channel"))
-@app_commands.describe(role=locale_str("Role that the bot will ping"))
-@app_commands.checks.has_permissions(administrator=True)
-async def addchannel(interaction, role: discord.Role, giveaway_delete: int):
-    await db.save_channel(interaction.guild_id, interaction.channel_id, role.id)
+   Тут ВЫМЫШЛЕННЫЙ примерный код (обычный шаблон discord.py), это НЕ код бота Matrix.
+   Хочешь другой текст на фоне — измени snippet. Реальный код сюда не вставляй. */
+const snippet = `import discord
+from discord.ext import commands, tasks
+from dataclasses import dataclass
+import asyncio
+import random
 
-@stalzone.command(name="emission", description=locale_str("Manage emission notifications channel"))
-@app_commands.checks.has_permissions(administrator=True)
-async def emission(interaction, added: int):
-    await set_emission_channel(interaction.guild_id, added)
+intents = discord.Intents.default()
+bot = commands.Bot(command_prefix="!", intents=intents)
 
-@senscalc.command(name="text", description=locale_str("Auto-calculate zoom sensitivity (ADS)"))
-async def sens_text(interaction, calc_mode: int, sens: float, fov: int, zooms: str):
-    ratio = math.tan(math.radians(fov / 2)) / math.tan(math.radians(fov / (2 * zoom)))
-    result = sens * ratio
+@dataclass
+class Item:
+    title: str
+    score: int = 0
+    active: bool = True
 
-@bot.tree.command(name="image2text", description=locale_str("Converts an image into ASCII text art"))
-async def image2text(interaction, file: discord.Attachment, ascii_mode: str, resize: str):
-    img = Image.open(io.BytesIO(await file.read())).convert("L")
-    chars = PRESETS.get(ascii_mode, ascii_mode)
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user}")
+    await bot.tree.sync()
 
-@bot.tree.command(name="antibot", description="Configure anti-bot trap channel and punishment settings")
-async def antibot(interaction):
-    await interaction.response.send_message(view=AntiBotView())
+@bot.tree.command(name="ping", description="Show bot latency")
+async def ping(interaction: discord.Interaction):
+    latency = round(bot.latency * 1000)
+    await interaction.response.send_message(f"Pong! {latency} ms")
+
+class Example(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.items = []
+        self.refresh.start()
+
+    @tasks.loop(minutes=10)
+    async def refresh(self):
+        for item in self.items:
+            if item.active:
+                item.score += random.randint(1, 5)
+        await asyncio.sleep(1)
+
+    @commands.Cog.listener()
+    async def on_member_join(self, member):
+        channel = member.guild.system_channel
+        if channel is not None:
+            embed = discord.Embed(title="Welcome", color=0xFFC933)
+            await channel.send(embed=embed)
+
+async def setup(bot):
+    await bot.add_cog(Example(bot))
 
 `;
-document.getElementById("code").textContent = snippet.repeat(6);
+document.getElementById("code").textContent = snippet.repeat(4);

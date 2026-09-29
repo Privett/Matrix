@@ -3,25 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Matrix — команды</title>
+<title data-i18n="title.cmds">Matrix — команды</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&family=Onest:wght@400;600&family=Unbounded:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/commands.css">
 </head>
 <body>
-<!-- Фон: код (заполняется из js/background.js), затемнение и цветная подсветка -->
-<div class="bg" aria-hidden="true"><pre class="bg-code" id="code"></pre><div class="bg-tint"></div><div class="bg-scrim"></div></div>
-
 <!-- Список команд рисуется скриптом js/commands.js из js/commands-data.js -->
 <div class="wrap">
 <header>
   <div>
     <h1>Matrix</h1>
     <p class="sub" id="sub"></p>
-  </div>
-  <div class="lang" role="group" aria-label="Language">
-    <button data-l="ru">RU</button><button data-l="en">EN</button>
   </div>
 </header>
 <div class="tools">
@@ -33,15 +27,19 @@
 <footer id="foot"></footer>
 </div>
 
-<!-- Нижнее меню: одинаковое на всех страницах -->
-<nav class="dock" aria-label="Навигация">
-  <a href="index.html">Главная</a>
-  <a class="on" href="commands.html">Команды</a>
-  <a href="https://discord.gg/5FC7pRP5dN">Поддержка</a>
-  <a href="https://github.com/Privett/Matrix">GitHub</a>
+<!-- Нижнее меню: одинаковое на всех страницах. Кнопки RU/EN обрабатывает js/i18n.js -->
+<nav class="dock" aria-label="Menu">
+  <a href="index.html" data-i18n="nav.home">Главная</a>
+  <a class="on" href="commands.html" data-i18n="nav.cmds">Команды</a>
+  <a href="https://discord.gg/5FC7pRP5dN" data-i18n="nav.support">Поддержка</a>
+  <a class="hide-sm" href="https://github.com/Privett/Matrix">GitHub</a>
+  <div class="dock-lang" role="group" aria-label="Language">
+    <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
 </nav>
 
-<script src="js/background.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/commands-data.js"></script>
 <script src="js/commands.js"></script>
 </body>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Matrix — мультибот для Discord</title>
+<title data-i18n="title.home">Matrix — мультибот для Discord</title>
 <meta name="description" content="Раздачи игр, Stalzone, калькулятор чувствительности, ASCII-арт и антибот в одном Discord-боте.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&family=Onest:wght@400;600&family=Unbounded:wght@600&display=swap" rel="stylesheet">
@@ -19,32 +19,37 @@
   <section class="hero">
     <img class="logo" src="https://cdn.top.gg/icons/791437551271243776/f4faf42c3b95a3a758b4b536f1863c5f6d7615b9a82f933bce0c697e150ba5e6.webp" alt="Matrix">
     <h1>Matrix</h1>
-    <p class="lead">Раздачи игр, Stalzone, калькулятор сенсы, ASCII-арт и антибот. Один бот вместо пяти.</p>
+    <p class="lead" data-i18n="hero.lead">Раздачи игр, Stalzone, калькулятор сенсы, ASCII-арт и антибот. Один бот вместо пяти.</p>
     <div class="cta">
-      <a class="btn main" href="https://top.gg/px/projects/791437551271243776/invite" id="invite">Добавить на сервер</a>
-      <a class="btn" href="commands.html">Все команды</a>
-      <a class="btn" href="https://top.gg/ru/bot/1122172697644912736/vote">Проголосовать</a>
+      <a class="btn main" href="https://top.gg/px/projects/791437551271243776/invite" id="invite" data-i18n="btn.invite">Добавить на сервер</a>
+      <a class="btn" href="commands.html" data-i18n="btn.cmds">Все команды</a>
+      <a class="btn" href="https://top.gg/ru/bot/1122172697644912736/vote" data-i18n="btn.vote">Проголосовать</a>
     </div>
   </section>
 
   <!-- Карточки модулей. --c и data-t — цвет карточки и подсветки фона (R,G,B) -->
   <section class="mods" id="mods">
-    <a class="mod" href="commands.html#giveaway" style="--c:255,201,51" data-t="255,201,51"><h2>Раздачи игр</h2><p>Присылает бесплатные раздачи в канал и пингует нужную роль.</p><code>/addchannel</code></a>
-    <a class="mod" href="commands.html#stalzone" style="--c:255,138,43" data-t="255,138,43"><h2>Stalzone</h2><p>Уведомления о выбросах, расчёт игр до уровня и монет, привязка аккаунта.</p><code>/stalzone emission</code></a>
-    <a class="mod" href="commands.html#sens" style="--c:255,232,102" data-t="255,232,102"><h2>Sens Calc</h2><p>Чувствительность прицеливания по FOV и зумам, даже прямо в JSON-файле.</p><code>/senscalc text</code></a>
-    <a class="mod" href="commands.html#ascii" style="--c:214,170,60" data-t="214,170,60"><h2>ASCII-арт</h2><p>Превращает любую картинку в символы: текстом или в виде изображения.</p><code>/image2text</code></a>
-    <a class="mod" href="commands.html#protect" style="--c:255,110,60" data-t="255,110,60"><h2>Антибот</h2><p>Любое сообщение в канале-ловушке — кик или бан. Со счётчиком киков и режимами наказаний.</p><code>/antibot</code></a>
+    <a class="mod" href="commands.html#giveaway" style="--c:255,201,51" data-t="255,201,51"><h2 data-i18n="mod.giveaway.t">Раздачи игр</h2><p data-i18n="mod.giveaway.d">Присылает бесплатные раздачи в канал и пингует нужную роль.</p><code>/addchannel</code></a>
+    <a class="mod" href="commands.html#stalzone" style="--c:255,138,43" data-t="255,138,43"><h2 data-i18n="mod.stalzone.t">Stalzone</h2><p data-i18n="mod.stalzone.d">Уведомления о выбросах, расчёт игр до уровня и монет, привязка аккаунта.</p><code>/stalzone emission</code></a>
+    <a class="mod" href="commands.html#sens" style="--c:255,232,102" data-t="255,232,102"><h2 data-i18n="mod.sens.t">Sens Calc</h2><p data-i18n="mod.sens.d">Чувствительность прицеливания по FOV и зумам, даже прямо в JSON-файле.</p><code>/senscalc text</code></a>
+    <a class="mod" href="commands.html#ascii" style="--c:214,170,60" data-t="214,170,60"><h2 data-i18n="mod.ascii.t">ASCII-арт</h2><p data-i18n="mod.ascii.d">Превращает любую картинку в символы: текстом или в виде изображения.</p><code>/image2text</code></a>
+    <a class="mod" href="commands.html#protect" style="--c:255,110,60" data-t="255,110,60"><h2 data-i18n="mod.protect.t">Антибот</h2><p data-i18n="mod.protect.d">Любое сообщение в канале-ловушке — кик или бан. Со счётчиком киков и режимами наказаний.</p><code>/antibot</code></a>
   </section>
 </main>
 
-<!-- Нижнее меню: одинаковое на всех страницах -->
-<nav class="dock" aria-label="Навигация">
-  <a class="on" href="index.html">Главная</a>
-  <a href="commands.html">Команды</a>
-  <a href="https://discord.gg/5FC7pRP5dN">Поддержка</a>
-  <a href="https://github.com/Privett/Matrix">GitHub</a>
+<!-- Нижнее меню: одинаковое на всех страницах. Кнопки RU/EN обрабатывает js/i18n.js -->
+<nav class="dock" aria-label="Menu">
+  <a class="on" href="index.html" data-i18n="nav.home">Главная</a>
+  <a href="commands.html" data-i18n="nav.cmds">Команды</a>
+  <a href="https://discord.gg/5FC7pRP5dN" data-i18n="nav.support">Поддержка</a>
+  <a class="hide-sm" href="https://github.com/Privett/Matrix">GitHub</a>
+  <div class="dock-lang" role="group" aria-label="Language">
+    <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
 </nav>
 
+<script src="js/i18n.js"></script>
 <script src="js/background.js"></script>
 <script src="js/home.js"></script>
 </body>
