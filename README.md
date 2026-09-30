@@ -24,7 +24,6 @@
 
 ### 🛡️ License & Branding
 This project is licensed under the **Apache License 2.0**.
-* **Trademarks:** The name "Matrix" and its logo are unique identifiers.
 * **Forks:** If you fork this project, you **must** change the name and logo to avoid user confusion.
 
 ---
@@ -45,7 +44,6 @@ This project is licensed under the **Apache License 2.0**.
 
 ### 🛡️ Лицензия и Брендинг
 Проект распространяется под лицензией **Apache 2.0**.
-* **Права:** Использование кода разрешено, однако название "Matrix" и логотип защищены авторским правом данного проекта.
 * **Форки:** При копировании кода вы обязаны сменить название проекта во избежание путаницы среди пользователей.
 
 ---
