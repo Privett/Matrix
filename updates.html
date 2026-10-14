@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-i18n="title.updates">Matrix — обновления</title>
+<link rel="icon" type="image/webp" href="https://cdn.top.gg/icons/791437551271243776/f4faf42c3b95a3a758b4b536f1863c5f6d7615b9a82f933bce0c697e150ba5e6.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&family=Onest:wght@400;600&family=Unbounded:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/commands.css">
+<link rel="stylesheet" href="css/updates.css">
+</head>
+<body>
+<main class="updates-wrap">
+  <header class="updates-header">
+    <h1 data-i18n="updates.archive.heading">История обновлений</h1>
+    <p data-i18n="updates.archive.lead">Новые функции, улучшения и исправления Matrix.</p>
+  </header>
+  <div id="updates-list" aria-live="polite"></div>
+</main>
+<nav class="dock" aria-label="Menu">
+  <a href="index.html" data-i18n="nav.home">Главная</a>
+  <a href="commands.html" data-i18n="nav.cmds">Команды</a>
+  <a href="tickets.html" data-i18n="nav.tickets">Тикеты</a>
+  <a class="on" href="updates.html" data-i18n="nav.updates">Обновления</a>
+  <a href="https://discord.gg/5FC7pRP5dN" data-i18n="nav.support">Поддержка</a>
+  <div class="dock-lang" role="group" aria-label="Language">
+    <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</nav>
+<script src="js/i18n.js"></script>
+<script src="js/updates.js"></script>
+</body>
+</html>

@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&family=Onest:wght@400;600&family=Unbounded:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/updates.css">
 </head>
 <body>
 <!-- Фон: код (заполняется из js/background.js), затемнение и цветная подсветка -->
@@ -37,6 +38,14 @@
     <a class="mod" href="commands.html#protect" style="--c:255,110,60" data-t="255,110,60"><h2 data-i18n="mod.protect.t">Антибот</h2><p data-i18n="mod.protect.d">Любое сообщение в канале-ловушке — кик или бан. Со счётчиком киков и режимами наказаний.</p><code>/antibot</code></a>
     <a class="mod" href="tickets.html" style="--c:255,176,66" data-t="255,176,66"><h2 data-i18n="mod.tickets.t">Тикеты</h2><p data-i18n="mod.tickets.d">Приватные каналы поддержки с очередью, транскриптами и подробной справкой.</p><code>/ticket settings</code></a>
   </section>
+
+  <section class="updates-preview" aria-labelledby="updates-heading">
+    <div class="updates-preview-head">
+      <h2 id="updates-heading" data-i18n="updates.heading">Последние обновления</h2>
+      <a href="updates.html" data-i18n="updates.all">Все обновления →</a>
+    </div>
+    <div id="updates-preview-list" aria-live="polite"></div>
+  </section>
 </main>
 
 <!-- Нижнее меню: одинаковое на всех страницах. Кнопки RU/EN обрабатывает js/i18n.js -->
@@ -44,6 +53,7 @@
   <a class="on" href="index.html" data-i18n="nav.home">Главная</a>
   <a href="commands.html" data-i18n="nav.cmds">Команды</a>
   <a href="tickets.html" data-i18n="nav.tickets">Тикеты</a>
+  <a href="updates.html" data-i18n="nav.updates">Обновления</a>
   <a href="https://discord.gg/5FC7pRP5dN" data-i18n="nav.support">Поддержка</a>
   <a class="hide-sm" href="https://github.com/Privett/Matrix">GitHub</a>
   <div class="dock-lang" role="group" aria-label="Language">
@@ -55,5 +65,6 @@
 <script src="js/i18n.js"></script>
 <script src="js/background.js"></script>
 <script src="js/home.js"></script>
+<script src="js/updates.js"></script>
 </body>
 </html>

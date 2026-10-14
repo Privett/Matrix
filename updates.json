@@ -1,0 +1,37 @@
+{
+  "updates": [
+    {
+      "id": "global-ticket-system",
+      "date": "2026-10-15",
+      "scope": "global",
+      "type": "added",
+      "featured": true,
+      "title": {
+        "ru": "Глобальное обновление системы тикетов",
+        "en": "Global ticket system update"
+      },
+      "summary": {
+        "ru": "Добавлена полноценная система тикетов с очередью, настройками доступа и транскриптами.",
+        "en": "A complete ticket system is now available, with a claim queue, configurable permissions and transcripts."
+      },
+      "details": {
+        "ru": [
+          "Создавайте приватные тикеты через панель и настраивайте категории, роли поддержки, типы обращений и оформление.",
+          "Включайте очередь: новые тикеты скрыты от ролей поддержки, пока сотрудник не возьмёт обращение. Роли только для чтения сохраняют доступ к просмотру.",
+          "Управляйте тикетами, закрывайте и повторно открывайте сохранённые каналы; выдавайте дополнительные права сотрудникам и администраторам.",
+          "Создавайте транскрипты в форматах HTML и TXT, отправляйте их в лог-канал или автору в личные сообщения.",
+          "Настраивайте приветственное сообщение с переменными и управляйте всеми основными параметрами в окне настроек.",
+          "Полная справка на русском и английском доступна на странице тикетов."
+        ],
+        "en": [
+          "Create private tickets from a panel and configure categories, support roles, ticket types and appearance.",
+          "Enable the claim queue: new tickets stay hidden from support roles until a staff member claims them. Read-only roles can still view them.",
+          "Manage, close and reopen kept tickets; grant additional access to staff and administrators.",
+          "Generate HTML and TXT transcripts and send them to the log channel or to the author by DM.",
+          "Customize the welcome message with placeholders and manage the main options in the settings window.",
+          "A complete guide in Russian and English is available on the Tickets page."
+        ]
+      }
+    }
+  ]
+}
