@@ -117,8 +117,15 @@ const TD = {
   [
    "vars",
    {
-    "ru": "Переменные",
-    "en": "Variables"
+    "ru": "Переменные сообщения",
+    "en": "Message variables"
+   }
+  ],
+  [
+   "namevars",
+   {
+    "ru": "Имя тикета",
+    "en": "Ticket name"
    }
   ],
   [
@@ -881,6 +888,56 @@ const TD = {
     }
    }
   },
+  "namevars": {
+   "t": {
+    "ru": "Переменные имени тикета",
+    "en": "Ticket name variables"
+   },
+   "d": {
+    "ru": "Используются в настройке «Шаблон имени канала». Здесь одинарные фигурные скобки — это другой набор переменных, не путай их с двойными скобками в переменных сообщения.",
+    "en": "Use these in the “Channel name template” setting. These single-brace placeholders are a separate set from the double-brace message variables."
+   },
+   "rows": [
+    [
+     "{number}",
+     {
+      "ru": "Номер тикета из четырёх цифр, например 0042",
+      "en": "Four-digit ticket number, for example 0042"
+     }
+    ],
+    [
+     "{username}",
+     {
+      "ru": "Имя пользователя Discord (не серверный ник)",
+      "en": "Discord username (not the server display name)"
+     }
+    ],
+    [
+     "{userid}",
+     {
+      "ru": "ID пользователя Discord",
+      "en": "Discord user ID"
+     }
+    ],
+    [
+     "{type}",
+     {
+      "ru": "Выбранный тип тикета; если типы не настроены, подставится пустая строка",
+      "en": "Selected ticket type; replaced with an empty string if ticket types are not configured"
+     }
+    ]
+   ],
+   "example": {
+    "in": {
+     "ru": "ticket-{number}-{username}-{type}",
+     "en": "ticket-{number}-{username}-{type}"
+    },
+    "out": {
+     "ru": "ticket-0042-alex-question",
+     "en": "ticket-0042-alex-question"
+    }
+   }
+  },
   "perms": {
    "t": {
     "ru": "Права бота",
@@ -1311,8 +1368,8 @@ const TD = {
            "en": "Channel name template"
          },
          "desc": {
-           "ru": "Шаблон названия нового тикета. Переменные: {number}, {username}, {userid}, {type}.",
-           "en": "Template for new ticket channel names. Variables: {number}, {username}, {userid}, {type}."
+           "ru": "Шаблон названия нового тикета. Используй одинарные фигурные скобки: <a href=\"#namevars\">{number}, {username}, {userid}, {type}</a>.",
+           "en": "Template for new ticket channel names. Use single braces: <a href=\"#namevars\">{number}, {username}, {userid}, {type}</a>."
          },
          "max": 60,
          "def": "ticket-{number}"

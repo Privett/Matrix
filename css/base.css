@@ -4,6 +4,8 @@
 --r:8px;--accent:#FFC933;--orange:#FF8A2B;--panel:#1D1A10;
 --mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Onest',system-ui,sans-serif}
 *{box-sizing:border-box}
+html{scrollbar-width:none}
+html::-webkit-scrollbar,.dock::-webkit-scrollbar{display:none}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 var(--sans);min-height:100vh}
 
 
@@ -26,7 +28,8 @@ color:rgba(var(--tint),.6);text-shadow:0 0 6px rgba(var(--tint),.85),0 0 22px rg
 
 /* --- Нижнее меню --- */
 .dock{position:fixed;left:50%;bottom:max(22px,env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);display:flex;gap:4px;padding:8px;
-background:rgba(28,24,14,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 32px rgba(0,0,0,.4);max-width:calc(100vw - 24px)}
+background:rgba(28,24,14,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 32px rgba(0,0,0,.4);max-width:calc(100vw - 24px);overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;touch-action:pan-x}
+.dock>a,.dock-lang{flex:none}
 .dock a{padding:10px 14px;border-radius:12px;color:rgba(255,255,255,.65);text-decoration:none;font-size:15px;white-space:nowrap;transition:background .15s,color .15s}
 .dock a:hover{background:rgba(255,255,255,.08);color:#fff}
 .dock a.on{background:rgba(var(--tint),.2);color:#fff}

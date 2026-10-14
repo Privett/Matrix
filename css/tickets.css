@@ -4,7 +4,7 @@
 section,details,.block,.step,.flow>div{scroll-margin-top:150px}
 
 /* Чипы-ссылки на разделы: их около десяти, поэтому одна строка с горизонтальной прокруткой */
-.chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding-bottom:2px}
 .chips::-webkit-scrollbar{display:none}
 .chips a{flex:none;background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:5px 14px;font-size:14px;text-decoration:none;white-space:nowrap}
 .chips a:hover,.chips a[aria-current=true]{color:var(--text);border-color:var(--accent)}

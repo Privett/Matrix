@@ -7,6 +7,13 @@ const $ = s => document.querySelector(s), u = k => TD.ui[lang][k];
 const L = o => (o && (o[lang] ?? o.ru)) || "";           // выбрать текст нужного языка
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const settingName = key => { for (const p of TD.settings) for (const i of p.items) if (i.key === key) return L(i.name); return key; };
+$("#chips").addEventListener("wheel", e => {
+  const chips = e.currentTarget;
+  if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && chips.scrollWidth > chips.clientWidth) {
+    chips.scrollLeft += e.deltaY;
+    e.preventDefault();
+  }
+}, { passive: false });
 
 /* ---------- блоки ---------- */
 const steps = list => `<ol class="steps">${list.map(s => `<li class="item"><div><b>${L(s.t)}</b><p>${L(s.d)}</p></div></li>`).join("")}</ol>`;
@@ -55,6 +62,7 @@ const BODY = {
   types: s => `<div class="block item">${ul(s.list)}</div>`,
   transcripts: s => blocks(s.blocks) + notes(s.notes),
   vars: s => `<div class="block item">${table(["var", "gives"], s.rows)}<div class="example"><div><small>${L({ ru: "Вы пишете", en: "You write" })}</small>${esc(L(s.example.in))}</div><div><small>${L({ ru: "Получится", en: "Result" })}</small>${esc(L(s.example.out))}</div></div></div>`,
+  namevars: s => `<div class="block item">${table(["var", "gives"], s.rows)}<div class="example"><div><small>${L({ ru: "Вы пишете", en: "You write" })}</small>${esc(L(s.example.in))}</div><div><small>${L({ ru: "Получится", en: "Result" })}</small>${esc(L(s.example.out))}</div></div></div>`,
   perms: s => `<div class="block item">${table(s.cols, s.rows)}</div>`,
   faq: s => faq(s.list),
 };
