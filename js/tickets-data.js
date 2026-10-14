@@ -255,8 +255,8 @@ const TD = {
       "en": "Closing"
      },
      "d": {
-      "ru": "Закрыть может автор, поддержка, администратор или тот, кто взял тикет. Если включено подтверждение, бот переспрашивает.",
-      "en": "The author, support, an administrator or whoever claimed the ticket can close it. With confirmation on, the bot asks again."
+      "ru": "Кто может закрыть тикет, зависит от вкладки «Сотрудники»; администраторы могут всегда. Если включено подтверждение, бот переспрашивает.",
+      "en": "Who can close a ticket is controlled on the “Staff” tab; administrators can always close it. With confirmation on, the bot asks again."
      }
     },
     {
@@ -303,8 +303,8 @@ const TD = {
     "en": "Queue mode (claiming tickets)"
    },
    "d": {
-    "ru": "Для больших команд: новый тикет скрыт от поддержки, пока один из сотрудников не возьмёт его. После этого он открывается только взявшему.",
-    "en": "For bigger teams: a new ticket is hidden from support until one staff member claims it. After that it opens for that person only."
+    "ru": "Для больших команд: новый тикет скрыт от поддержки, пока один из сотрудников не возьмёт его. После этого доступ получает взявший сотрудник; роли только для чтения по-прежнему видят тикет.",
+    "en": "For bigger teams: a new ticket is hidden from support until one staff member claims it. The claimer then gets access; read-only roles can still see the ticket."
    },
    "steps": [
     {
@@ -447,8 +447,8 @@ const TD = {
        "en": "<b>Mine</b>: your open tickets. “Close” (press twice when confirmation is on) or “Release”."
       },
       {
-       "ru": "<b>Закрытые</b>: закрытые тикеты, у которых канал оставлен. «Открыть снова». Сотрудник видит свои, администратор все.",
-       "en": "<b>Closed</b>: closed tickets whose channel was kept. “Reopen”. Staff see their own, administrators see all."
+       "ru": "<b>Закрытые</b>: закрытые тикеты, у которых канал оставлен. «Открыть снова». Сотрудник видит свои, а администратор и пользователи с доступом к админ-панели — все.",
+       "en": "<b>Closed</b>: closed tickets whose channel was kept. “Reopen”. Staff see their own; server administrators and users with admin-panel access see all."
       }
      ]
     },
@@ -482,8 +482,8 @@ const TD = {
       "en": "How to learn about a new ticket"
      },
      "d": {
-      "ru": "Сотрудники не видят скрытые тикеты, поэтому бот пишет в лог-канал: «Тикет ждёт сотрудника». Дальше — <code>/ticket manage</code>.",
-      "en": "Staff cannot see hidden tickets, so the bot posts “Ticket is waiting for staff” to the log channel. Then use <code>/ticket manage</code>."
+      "ru": "Если уведомления включены, бот пишет в выбранный канал (или в лог-канал, если отдельный не задан): «Тикет ждёт сотрудника». Дальше — <code>/ticket manage</code>.",
+      "en": "If notifications are enabled, the bot posts “Ticket is waiting for staff” to the selected channel (or the log channel when none is selected). Then use <code>/ticket manage</code>."
      }
     }
    ],
@@ -508,116 +508,206 @@ const TD = {
     "en": "Click a command to copy it, click the row for details."
    },
    "list": [
-    {
-     "c": "/ticket settings",
-     "a": 1,
-     "b": {
-      "ru": "Открыть окно настроек тикетов",
-      "en": "Open the ticket settings window"
-     },
-     "o": [],
-     "note": {
-      "ru": "Окно видно только вам и работает 10 минут. Вкладки: Основное, Тикеты, Панель, Закрытие, Транскрипт. Подробности — в <a href=\"#settings\">справочнике настроек</a>.",
-      "en": "The window is visible only to you and works for 10 minutes. Tabs: General, Tickets, Panel, Closing, Transcript. Details are in the <a href=\"#settings\">settings reference</a>."
-     }
-    },
-    {
-     "c": "/ticket panel",
-     "a": 1,
-     "b": {
-      "ru": "Отправить панель с кнопкой «Создать тикет» в этот канал",
-      "en": "Post the panel with the Create ticket button in this channel"
-     },
-     "o": [],
-     "note": {
-      "ru": "Сначала заполните вкладку «Основное» в настройках. Бот запоминает панель, и изменения оформления потом обновляют её сами.",
-      "en": "Fill in the “General” tab of the settings first. The bot remembers the panel, so later look changes update it automatically."
-     }
-    },
-    {
-     "c": "/ticket manage",
-     "b": {
-      "ru": "Очередь тикетов, мои тикеты и закрытые",
-      "en": "Ticket queue, my tickets and closed ones"
-     },
-     "o": [],
-     "note": {
-      "ru": "Доступна тем, кто может брать тикеты. Подробнее — в разделе <a href=\"#queue\">«Очередь»</a>.",
-      "en": "Available to those who can claim tickets. See <a href=\"#queue\">Queue</a> for details."
-     }
-    },
-    {
-     "c": "/ticket add",
-     "b": {
-      "ru": "Добавить участника в тикет",
-      "en": "Add a member to the ticket"
-     },
-     "o": [
-      [
-       "user",
-       {
-        "ru": "Участник, которого нужно добавить",
-        "en": "The member to add"
+     {
+       "c": "/ticket settings",
+       "a": 1,
+       "b": {
+         "ru": "Открыть окно настроек тикетов",
+         "en": "Open the ticket settings window"
+       },
+       "o": [],
+       "note": {
+         "ru": "Окно видно только вам и работает 10 минут. Вкладки: Основное, Тикеты, Панель, Приветствие, Очередь, Сотрудники, Админ-панель, Закрытие и Транскрипт. Вкладка «Админ-панель» доступна владельцу сервера. Подробности — в <a href=\"tickets.html#settings\">справочнике настроек</a>.",
+         "en": "The window is visible only to you and works for 10 minutes. Tabs: General, Tickets, Panel, Welcome, Queue, Staff, Admin panel, Closing and Transcript. The Admin panel tab is available to the server owner. Details are in the <a href=\"tickets.html#settings\">settings reference</a>."
        }
-      ]
-     ],
-     "note": {
-      "ru": "Работает внутри тикета. Доступна сотрудникам и тому, кто взял тикет.",
-      "en": "Works inside a ticket. Available to staff and whoever claimed the ticket."
-     }
-    },
-    {
-     "c": "/ticket remove",
-     "b": {
-      "ru": "Убрать участника из тикета",
-      "en": "Remove a member from the ticket"
      },
-     "o": [
-      [
-       "user",
-       {
-        "ru": "Участник, которого нужно убрать",
-        "en": "The member to remove"
+     {
+       "c": "/ticket panel",
+       "a": 1,
+       "b": {
+         "ru": "Отправить панель с кнопкой «Создать тикет» в этот канал",
+         "en": "Post the panel with the Create ticket button in this channel"
+       },
+       "o": [],
+       "note": {
+         "ru": "Сначала заполните вкладку «Основное» в настройках. Бот запоминает панель, и изменения оформления потом обновляют её сами.",
+         "en": "Fill in the “General” tab of the settings first. The bot remembers the panel, so later look changes update it automatically."
        }
-      ]
-     ],
-     "note": {
-      "ru": "Нельзя убрать автора тикета, взявшего его сотрудника и бота.",
-      "en": "You cannot remove the ticket author, the staff member who claimed it, or the bot."
-     }
-    },
-    {
-     "c": "/ticket rename",
-     "b": {
-      "ru": "Переименовать тикет",
-      "en": "Rename the ticket"
      },
-     "o": [
-      [
-       "name",
-       {
-        "ru": "Новое название. Бот приведёт его к виду ticket-0041-ваш-текст",
-        "en": "The new name. The bot turns it into ticket-0041-your-text"
+     {
+       "c": "/ticket manage",
+       "b": {
+         "ru": "Очередь тикетов, мои тикеты и закрытые",
+         "en": "Ticket queue, my tickets and closed ones"
+       },
+       "o": [],
+       "note": {
+         "ru": "Доступна администраторам и тем, кому разрешено брать тикеты (обычно ролям поддержки). Подробнее — в разделе <a href=\"tickets.html#queue\">«Очередь»</a>.",
+         "en": "Available to administrators and people allowed to claim tickets (usually support roles). See <a href=\"tickets.html#queue\">Queue</a> for details."
        }
-      ]
-     ],
-     "note": {
-      "ru": "Номер тикета сохраняется. Discord ограничивает частоту переименований (примерно два раза за десять минут).",
-      "en": "The ticket number is kept. Discord limits renames (about two per ten minutes)."
-     }
-    },
-    {
-     "c": "/ticket help",
-     "b": {
-      "ru": "Краткая справка и ссылка на эту страницу",
-      "en": "Short guide with a link to this page"
      },
-     "o": [],
-     "note": {
-      "ru": "Доступна всем. Кнопки «Справка» в окне настроек и в панели <code>/ticket manage</code> ведут сюда же.",
-      "en": "Available to everyone. The Docs buttons in the settings window and in <code>/ticket manage</code> lead here too."
+     {
+       "c": "/ticket add",
+       "b": {
+         "ru": "Добавить участника в тикет",
+         "en": "Add a member to the ticket"
+       },
+       "o": [
+         [
+           "user",
+           {
+             "ru": "Участник, которого нужно добавить",
+             "en": "The member to add"
+           }
+         ]
+       ],
+       "note": {
+         "ru": "Работает внутри тикета. Доступна сотрудникам и тому, кто взял тикет.",
+         "en": "Works inside a ticket. Available to staff and whoever claimed the ticket."
+       }
+     },
+     {
+       "c": "/ticket remove",
+       "b": {
+         "ru": "Убрать участника из тикета",
+         "en": "Remove a member from the ticket"
+       },
+       "o": [
+         [
+           "user",
+           {
+             "ru": "Участник, которого нужно убрать",
+             "en": "The member to remove"
+           }
+         ]
+       ],
+       "note": {
+         "ru": "Нельзя убрать автора тикета, взявшего его сотрудника и бота.",
+         "en": "You cannot remove the ticket author, the staff member who claimed it, or the bot."
+       }
+     },
+     {
+       "c": "/ticket rename",
+       "b": {
+         "ru": "Переименовать тикет",
+         "en": "Rename the ticket"
+       },
+       "o": [
+         [
+           "name",
+           {
+             "ru": "Новое название. Бот приведёт его к виду ticket-0041-ваш-текст",
+             "en": "The new name. The bot turns it into ticket-0041-your-text"
+           }
+         ]
+       ],
+       "note": {
+         "ru": "Номер тикета сохраняется. Discord ограничивает частоту переименований (примерно два раза за десять минут).",
+         "en": "The ticket number is kept. Discord limits renames (about two per ten minutes)."
+       }
+     },
+     {
+       "c": "/ticket help",
+       "b": {
+         "ru": "Краткая справка и ссылка на эту страницу",
+         "en": "Short guide with a link to this page"
+       },
+       "o": [],
+       "note": {
+         "ru": "Доступна всем. Кнопки «Справка» в окне настроек и в панели <code>/ticket manage</code> ведут сюда же.",
+         "en": "Available to everyone. The Docs buttons in the settings window and in <code>/ticket manage</code> lead here too."
+       }
+     },
+     {
+       "c": "/ticket close",
+       "b": {
+         "ru": "Закрыть текущий открытый тикет",
+         "en": "Close the current open ticket"
+       },
+       "o": [],
+       "note": {
+         "ru": "Работает внутри тикета и использует те же правила, что кнопка «Закрыть». Автор, поддержка и взявший тикет сотрудник могут закрывать его, если это разрешено настройками; администратор может всегда.",
+         "en": "Run inside a ticket; it follows the same rules as the Close button. The author, support and the staff member who claimed it can close it when allowed by settings; administrators always can."
+       }
+     },
+     {
+       "c": "/ticket transcript",
+       "b": {
+         "ru": "Получить транскрипт текущего тикета",
+         "en": "Get a transcript of the current ticket"
+       },
+       "o": [],
+       "note": {
+         "ru": "Работает внутри открытого тикета для поддержки или взявшего его сотрудника. Файл приходит только вызвавшему команду. Доступна и при выключенном автоматическом создании транскриптов.",
+         "en": "Run inside an open ticket as support staff or the person who claimed it. The file is sent privately to the caller. Available even when automatic transcript creation is off."
+       }
+     },
+     {
+       "c": "/ticket reopen",
+       "b": {
+         "ru": "Повторно открыть архивный тикет",
+         "en": "Reopen an archived ticket"
+       },
+       "o": [],
+       "note": {
+         "ru": "Запускается внутри сохранённого закрытого тикета. Доступна взявшему его сотруднику, администратору сервера и пользователям с доступом к админ-панели. Удалённый тикет восстановить нельзя.",
+         "en": "Run inside a kept, closed ticket. Available to the staff member who claimed it, server administrators and users with admin-panel access. Deleted tickets cannot be restored."
+       }
+     },
+     {
+       "c": "/ticket admin",
+       "b": {
+         "ru": "Открыть панель управления всеми тикетами",
+         "en": "Open the panel for all tickets"
+       },
+       "o": [],
+       "note": {
+         "ru": "Доступна владельцу сервера и ролям/пользователям, которым владелец выдал доступ во вкладке «Админ-панель».",
+         "en": "Available to the server owner and to roles/users granted access by the owner in the “Admin panel” settings."
+       }
+     },
+     {
+       "c": "/ticket blacklist add",
+       "a": 1,
+       "b": {
+         "ru": "Добавить пользователя в чёрный список",
+         "en": "Add a user to the blacklist"
+       },
+       "o": [
+         [
+           "user",
+           {
+             "ru": "Пользователь, которому запрещено создавать тикеты",
+             "en": "User who should not be able to create tickets"
+           }
+         ]
+       ],
+       "note": {
+         "ru": "Доступна администраторам сервера. То же ограничение настраивается во вкладке «Сотрудники».",
+         "en": "Server administrators only. The same list can be edited on the “Staff” settings tab."
+       }
+     },
+     {
+       "c": "/ticket blacklist remove",
+       "a": 1,
+       "b": {
+         "ru": "Убрать пользователя из чёрного списка",
+         "en": "Remove a user from the blacklist"
+       },
+       "o": [
+         [
+           "user",
+           {
+             "ru": "Пользователь, которому снова можно создавать тикеты",
+             "en": "User who should be allowed to create tickets again"
+           }
+         ]
+       ],
+       "note": {
+         "ru": "Доступна администраторам сервера. То же ограничение настраивается во вкладке «Сотрудники».",
+         "en": "Server administrators only. The same list can be edited on the “Staff” settings tab."
+       }
      }
-    }
    ]
   },
   "types": {
@@ -1018,8 +1108,8 @@ const TD = {
       "en": "No Reopen button or the ticket is missing from the Closed tab"
      },
      "a": {
-      "ru": "Тикет можно открыть снова только если при закрытии канал остался: в настройке «Действие при закрытии» должно быть «Закрыть и оставить». Удалённый канал не вернуть. Сотрудник видит закрытые тикеты, которые брал сам, администратор — все.",
-      "en": "A ticket can be reopened only if the channel was kept: “Action on close” must be “Close and keep”. A deleted channel cannot be brought back. Staff see closed tickets they claimed, administrators see all."
+      "ru": "Тикет можно открыть снова только если при закрытии канал остался: в настройке «Действие при закрытии» должно быть «Закрыть и оставить». Удалённый канал не вернуть. Сотрудник видит закрытые тикеты, которые брал сам; администраторы и пользователи с доступом к админ-панели — все.",
+      "en": "A ticket can be reopened only if the channel was kept: “Action on close” must be “Close and keep”. A deleted channel cannot be brought back. Staff see closed tickets they claimed; server administrators and users with admin-panel access see all."
      }
     },
     {
@@ -1068,8 +1158,8 @@ const TD = {
       "en": "/ticket settings and /ticket panel are not visible to everyone"
      },
      "a": {
-      "ru": "Это сделано намеренно: они доступны администраторам. Остальные команды видят все, но работают они только для сотрудников. Администратор сервера может изменить доступ в «Настройки сервера → Интеграции».",
-      "en": "This is intentional: they are for administrators. Everyone sees the other commands, but they only work for staff. A server administrator can change access in “Server Settings → Integrations”."
+      "ru": "Это сделано намеренно: команды доступны администраторам сервера. <code>/ticket help</code> доступна всем. Для остальных команд права зависят от действия: например, закрыть тикет может автор (если разрешено), поддержка или взявший его сотрудник. Администратор сервера может изменить доступ в «Настройки сервера → Интеграции».",
+      "en": "This is intentional: those commands are for server administrators. <code>/ticket help</code> is public. Access to other commands depends on the action: the author (if allowed), support or the staff member who claimed a ticket can close it. A server administrator can change command access in “Server Settings → Integrations”."
      }
     },
     {
@@ -1085,692 +1175,1042 @@ const TD = {
    ]
   }
  },
- "settings": [
-  {
-   "id": "main",
-   "name": {
-    "ru": "Основное",
-    "en": "General"
+ "settings":  [
+   {
+     "id": "main",
+     "name": {
+       "ru": "Основное",
+       "en": "General"
+     },
+     "items": [
+       {
+         "key": "category_id",
+         "kind": "channel",
+         "kindLabel": {
+           "ru": "выбор канала",
+           "en": "channel picker"
+         },
+         "req": true,
+         "cond": null,
+         "name": {
+           "ru": "Категория тикетов",
+           "en": "Ticket category"
+         },
+         "desc": {
+           "ru": "Категория, внутри которой бот будет создавать каналы тикетов.",
+           "en": "Category where the bot creates ticket channels."
+         }
+       },
+       {
+         "key": "support_role_ids",
+         "kind": "roles",
+         "kindLabel": {
+           "ru": "выбор ролей (несколько)",
+           "en": "role picker (multiple)"
+         },
+         "req": true,
+         "cond": null,
+         "name": {
+           "ru": "Роли поддержки",
+           "en": "Support roles"
+         },
+         "desc": {
+           "ru": "Можно выбрать несколько ролей. Они видят все тикеты, пишут в них и закрывают их.",
+           "en": "You can pick several roles. They see all tickets, write in them and close them."
+         }
+       },
+       {
+         "key": "log_channel_id",
+         "kind": "channel",
+         "kindLabel": {
+           "ru": "выбор канала",
+           "en": "channel picker"
+         },
+         "req": true,
+         "cond": null,
+         "name": {
+           "ru": "Лог-канал",
+           "en": "Log channel"
+         },
+         "desc": {
+           "ru": "Сюда бот отправляет транскрипты закрытых тикетов и логи действий.",
+           "en": "The bot sends transcripts of closed tickets and action logs here."
+         }
+       }
+     ]
    },
-   "items": [
-    {
-     "key": "category_id",
-     "kind": "channel",
-     "kindLabel": {
-      "ru": "выбор канала",
-      "en": "channel picker"
-     },
-     "req": true,
-     "cond": null,
+   {
+     "id": "tickets",
      "name": {
-      "ru": "Категория тикетов",
-      "en": "Ticket category"
+       "ru": "Тикеты",
+       "en": "Tickets"
      },
-     "desc": {
-      "ru": "Категория, внутри которой бот будет создавать каналы тикетов.",
-      "en": "Category where the bot creates ticket channels."
-     }
-    },
-    {
-     "key": "support_role_ids",
-     "kind": "roles",
-     "kindLabel": {
-      "ru": "выбор ролей (несколько)",
-      "en": "role picker (multiple)"
-     },
-     "req": true,
-     "cond": null,
-     "name": {
-      "ru": "Роли поддержки",
-      "en": "Support roles"
-     },
-     "desc": {
-      "ru": "Можно выбрать несколько ролей. Они видят все тикеты, пишут в них и закрывают их.",
-      "en": "You can pick several roles. They see all tickets, write in them and close them."
-     }
-    },
-    {
-     "key": "log_channel_id",
-     "kind": "channel",
-     "kindLabel": {
-      "ru": "выбор канала",
-      "en": "channel picker"
-     },
-     "req": true,
-     "cond": null,
-     "name": {
-      "ru": "Лог-канал",
-      "en": "Log channel"
-     },
-     "desc": {
-      "ru": "Сюда бот отправляет транскрипты закрытых тикетов и логи действий.",
-      "en": "The bot sends transcripts of closed tickets and action logs here."
-     }
-    }
-   ]
-  },
-  {
-   "id": "tickets",
-   "name": {
-    "ru": "Тикеты",
-    "en": "Tickets"
+     "items": [
+       {
+         "key": "max_tickets_per_user",
+         "kind": "limit",
+         "kindLabel": {
+           "ru": "выбор числа",
+           "en": "number picker"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Лимит тикетов на человека",
+           "en": "Tickets per user"
+         },
+         "desc": {
+           "ru": "Сколько тикетов один человек может держать открытыми одновременно. «Без лимита» отключает ограничение.",
+           "en": "How many tickets one person can have open at once. “No limit” disables the restriction."
+         },
+         "opts": [
+           {
+             "v": "0",
+             "ru": "Без лимита",
+             "en": "No limit"
+           },
+           {
+             "v": "1",
+             "ru": "1",
+             "en": "1"
+           },
+           {
+             "v": "2",
+             "ru": "2",
+             "en": "2"
+           },
+           {
+             "v": "3",
+             "ru": "3",
+             "en": "3"
+           },
+           {
+             "v": "5",
+             "ru": "5",
+             "en": "5"
+           },
+           {
+             "v": "10",
+             "ru": "10",
+             "en": "10"
+           }
+         ],
+         "def": 1
+       },
+       {
+         "key": "name_template",
+         "kind": "template",
+         "kindLabel": {
+           "ru": "шаблон имени",
+           "en": "name template"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Шаблон имени канала",
+           "en": "Channel name template"
+         },
+         "desc": {
+           "ru": "Шаблон названия нового тикета. Переменные: {number}, {username}, {userid}, {type}.",
+           "en": "Template for new ticket channel names. Variables: {number}, {username}, {userid}, {type}."
+         },
+         "max": 60,
+         "def": "ticket-{number}"
+       },
+       {
+         "key": "ticket_types",
+         "kind": "types",
+         "kindLabel": {
+           "ru": "список через запятую (окно ввода)",
+           "en": "comma-separated list (input window)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Типы тикетов",
+           "en": "Ticket types"
+         },
+         "desc": {
+           "ru": "Темы, которые человек выбирает при создании тикета (Вопрос, Жалоба, Баг…). Через запятую.",
+           "en": "Topics a person picks when creating a ticket (Question, Report, Bug…). Comma-separated."
+         },
+         "max": 300
+       },
+       {
+         "key": "ping_on_create",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Уведомлять роли при создании",
+           "en": "Notify roles on creation"
+         },
+         "desc": {
+           "ru": "Упоминать роли при создании тикета. В режиме очереди это уведомление не используется.",
+           "en": "Mention roles when a ticket is created. This notification is not used in queue mode."
+         },
+         "def": false
+       },
+       {
+         "key": "ping_role_ids",
+         "kind": "roles",
+         "kindLabel": {
+           "ru": "выбор ролей (несколько)",
+           "en": "role picker (multiple)"
+         },
+         "req": false,
+         "cond": "ping_on_create",
+         "name": {
+           "ru": "Кого упоминать",
+           "en": "Roles to mention"
+         },
+         "desc": {
+           "ru": "Роли для упоминания при создании. Если список пуст, бот упоминает роли поддержки.",
+           "en": "Roles to mention when a ticket is created. If empty, the bot mentions the support roles."
+         }
+       }
+     ]
    },
-   "items": [
-    {
-     "key": "max_tickets_per_user",
-     "kind": "limit",
-     "kindLabel": {
-      "ru": "выбор числа",
-      "en": "number picker"
-     },
-     "req": false,
-     "cond": null,
+   {
+     "id": "panel",
      "name": {
-      "ru": "Лимит тикетов на человека",
-      "en": "Tickets per user"
+       "ru": "Панель",
+       "en": "Panel"
      },
-     "desc": {
-      "ru": "Сколько тикетов один человек может держать открытыми одновременно. «Без лимита» отключает ограничение.",
-      "en": "How many tickets one person can have open at once. “No limit” disables the restriction."
-     },
-     "opts": [
-      {
-       "v": "0",
-       "ru": "Без лимита",
-       "en": "No limit"
-      },
-      {
-       "v": "1",
-       "ru": "1",
-       "en": "1"
-      },
-      {
-       "v": "2",
-       "ru": "2",
-       "en": "2"
-      },
-      {
-       "v": "3",
-       "ru": "3",
-       "en": "3"
-      },
-      {
-       "v": "5",
-       "ru": "5",
-       "en": "5"
-      },
-      {
-       "v": "10",
-       "ru": "10",
-       "en": "10"
-      }
-     ],
-     "def": 1
-    },
-    {
-     "key": "ticket_types",
-     "kind": "types",
-     "kindLabel": {
-      "ru": "список через запятую (окно ввода)",
-      "en": "comma-separated list (input window)"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Типы тикетов",
-      "en": "Ticket types"
-     },
-     "desc": {
-      "ru": "Темы, которые человек выбирает при создании тикета (Вопрос, Жалоба, Баг…). Через запятую.",
-      "en": "Topics a person picks when creating a ticket (Question, Report, Bug…). Comma-separated."
-     },
-     "max": 300
-    },
-    {
-     "key": "viewer_role_ids",
-     "kind": "roles",
-     "kindLabel": {
-      "ru": "выбор ролей (несколько)",
-      "en": "role picker (multiple)"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Роли только для чтения",
-      "en": "Read-only roles"
-     },
-     "desc": {
-      "ru": "Можно выбрать несколько ролей. Они видят тикеты и историю, но писать, реагировать и закрывать не могут.",
-      "en": "You can pick several roles. They can see tickets and history, but can't write, react or close."
-     }
-    },
-    {
-     "key": "blacklist",
-     "kind": "users",
-     "kindLabel": {
-      "ru": "выбор пользователей (несколько)",
-      "en": "user picker (multiple)"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Чёрный список",
-      "en": "Blacklist"
-     },
-     "desc": {
-      "ru": "Эти пользователи не смогут создавать тикеты.",
-      "en": "These users won't be able to create tickets."
-     }
-    },
-    {
-     "key": "claim_enabled",
-     "kind": "toggle",
-     "kindLabel": {
-      "ru": "переключатель Вкл/Выкл",
-      "en": "On/Off switch"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Очередь тикетов (взятие)",
-      "en": "Ticket queue (claiming)"
-     },
-     "desc": {
-      "ru": "Новый тикет не виден сотрудникам, пока кто-то его не возьмёт. Брать, вести, закрывать и открывать тикеты снова можно командой /ticket manage. После «Взять» тикет открывается только взявшему, а бот пишет в чате, кто принял тикет.",
-      "en": "A new ticket is hidden from staff until someone claims it. Claim, handle, close and reopen tickets with /ticket manage. After “Claim” the ticket becomes visible only to the person who took it, and the bot posts who accepted it."
-     },
-     "def": false
-    },
-    {
-     "key": "claim_role_ids",
-     "kind": "roles",
-     "kindLabel": {
-      "ru": "выбор ролей (несколько)",
-      "en": "role picker (multiple)"
-     },
-     "req": false,
-     "cond": "claim_enabled",
-     "name": {
-      "ru": "Кто может брать: роли",
-      "en": "Who can claim: roles"
-     },
-     "desc": {
-      "ru": "Участники этих ролей могут брать тикеты. Если роли и пользователи не выбраны, брать могут роли поддержки.",
-      "en": "Members of these roles can claim tickets. If no roles and no users are chosen, the support roles can claim."
-     }
-    },
-    {
-     "key": "claim_user_ids",
-     "kind": "users",
-     "kindLabel": {
-      "ru": "выбор пользователей (несколько)",
-      "en": "user picker (multiple)"
-     },
-     "req": false,
-     "cond": "claim_enabled",
-     "name": {
-      "ru": "Кто может брать: пользователи",
-      "en": "Who can claim: users"
-     },
-     "desc": {
-      "ru": "Отдельные пользователи, которые могут брать тикеты (в дополнение к ролям).",
-      "en": "Individual users who can claim tickets (in addition to the roles)."
-     }
-    }
-   ]
-  },
-  {
-   "id": "panel",
-   "name": {
-    "ru": "Панель",
-    "en": "Panel"
+     "items": [
+       {
+         "key": "panel_title",
+         "kind": "text",
+         "kindLabel": {
+           "ru": "текст (окно ввода)",
+           "en": "text (input window)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Заголовок панели",
+           "en": "Panel title"
+         },
+         "desc": {
+           "ru": "Заголовок сообщения с кнопкой создания тикета.",
+           "en": "Title of the message with the create-ticket button."
+         },
+         "max": 100
+       },
+       {
+         "key": "panel_description",
+         "kind": "text",
+         "kindLabel": {
+           "ru": "текст (окно ввода)",
+           "en": "text (input window)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Описание панели",
+           "en": "Panel description"
+         },
+         "desc": {
+           "ru": "Текст под заголовком панели: объясни, когда стоит открывать тикет.",
+           "en": "Text under the panel title: explain when to open a ticket."
+         },
+         "max": 1000
+       },
+       {
+         "key": "panel_button_label",
+         "kind": "text",
+         "kindLabel": {
+           "ru": "текст (окно ввода)",
+           "en": "text (input window)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Текст кнопки",
+           "en": "Button text"
+         },
+         "desc": {
+           "ru": "Надпись на кнопке создания тикета. Например: «Создать тикет» или «Связаться с поддержкой».",
+           "en": "Label on the create-ticket button, e.g. “Create ticket” or “Contact support”."
+         },
+         "max": 80,
+         "def": "Создать тикет"
+       },
+       {
+         "key": "panel_button_emoji",
+         "kind": "emoji",
+         "kindLabel": {
+           "ru": "эмодзи (окно ввода)",
+           "en": "emoji (input window)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Эмодзи кнопки",
+           "en": "Button emoji"
+         },
+         "desc": {
+           "ru": "Обычное эмодзи (🎫) или кастомное в виде <:name:id>. Чтобы получить код, напиши в чате \\:название: и скопируй результат. Пусто = без эмодзи.",
+           "en": "A normal emoji (🎫) or a custom one like <:name:id>. To get the code, type \\:name: in chat and copy the result. Empty = no emoji."
+         },
+         "max": 60
+       },
+       {
+         "key": "panel_button_style",
+         "kind": "btnstyle",
+         "kindLabel": {
+           "ru": "выбор цвета кнопки",
+           "en": "button colour picker"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Цвет кнопки",
+           "en": "Button color"
+         },
+         "desc": {
+           "ru": "Цвет кнопки на панели.",
+           "en": "Color of the button on the panel."
+         },
+         "opts": [
+           {
+             "v": "primary",
+             "ru": "Синяя",
+             "en": "Blue"
+           },
+           {
+             "v": "secondary",
+             "ru": "Серая",
+             "en": "Gray"
+           },
+           {
+             "v": "success",
+             "ru": "Зелёная",
+             "en": "Green"
+           },
+           {
+             "v": "danger",
+             "ru": "Красная",
+             "en": "Red"
+           }
+         ],
+         "def": "primary"
+       },
+       {
+         "key": "panel_color",
+         "kind": "color",
+         "kindLabel": {
+           "ru": "выбор цвета или свой HEX",
+           "en": "colour picker or custom HEX"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Цвет панели",
+           "en": "Panel color"
+         },
+         "desc": {
+           "ru": "Цвет полоски слева на панели тикетов.",
+           "en": "Color of the stripe on the left of the ticket panel."
+         },
+         "opts": [
+           {
+             "v": "#5865F2",
+             "ru": "Синий",
+             "en": "Blue"
+           },
+           {
+             "v": "#57F287",
+             "ru": "Зелёный",
+             "en": "Green"
+           },
+           {
+             "v": "#ED4245",
+             "ru": "Красный",
+             "en": "Red"
+           },
+           {
+             "v": "#FEE75C",
+             "ru": "Жёлтый",
+             "en": "Yellow"
+           },
+           {
+             "v": "#99AAB5",
+             "ru": "Серый",
+             "en": "Gray"
+           }
+         ],
+         "def": "#5865F2"
+       }
+     ]
    },
-   "items": [
-    {
-     "key": "panel_title",
-     "kind": "text",
-     "kindLabel": {
-      "ru": "текст (окно ввода)",
-      "en": "text (input window)"
-     },
-     "req": false,
-     "cond": null,
+   {
+     "id": "welcome",
      "name": {
-      "ru": "Заголовок панели",
-      "en": "Panel title"
+       "ru": "Приветствие",
+       "en": "Welcome"
      },
-     "desc": {
-      "ru": "Заголовок сообщения с кнопкой создания тикета.",
-      "en": "Title of the message with the create-ticket button."
-     },
-     "max": 100
-    },
-    {
-     "key": "panel_description",
-     "kind": "text",
-     "kindLabel": {
-      "ru": "текст (окно ввода)",
-      "en": "text (input window)"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Описание панели",
-      "en": "Panel description"
-     },
-     "desc": {
-      "ru": "Текст под заголовком панели: объясни, когда стоит открывать тикет.",
-      "en": "Text under the panel title: explain when to open a ticket."
-     },
-     "max": 1000
-    },
-    {
-     "key": "panel_button_label",
-     "kind": "text",
-     "kindLabel": {
-      "ru": "текст (окно ввода)",
-      "en": "text (input window)"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Текст кнопки",
-      "en": "Button text"
-     },
-     "desc": {
-      "ru": "Надпись на кнопке создания тикета. Например: «Создать тикет» или «Связаться с поддержкой».",
-      "en": "Label on the create-ticket button, e.g. “Create ticket” or “Contact support”."
-     },
-     "max": 80,
-     "def": "Создать тикет"
-    },
-    {
-     "key": "panel_button_emoji",
-     "kind": "emoji",
-     "kindLabel": {
-      "ru": "эмодзи (окно ввода)",
-      "en": "emoji (input window)"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Эмодзи кнопки",
-      "en": "Button emoji"
-     },
-     "desc": {
-      "ru": "Обычное эмодзи (🎫) или кастомное в виде <:name:id>. Чтобы получить код, напиши в чате \\:название: и скопируй результат. Пусто = без эмодзи.",
-      "en": "A normal emoji (🎫) or a custom one like <:name:id>. To get the code, type \\:name: in chat and copy the result. Empty = no emoji."
-     },
-     "max": 60
-    },
-    {
-     "key": "panel_button_style",
-     "kind": "btnstyle",
-     "kindLabel": {
-      "ru": "выбор цвета кнопки",
-      "en": "button colour picker"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Цвет кнопки",
-      "en": "Button color"
-     },
-     "desc": {
-      "ru": "Цвет кнопки на панели.",
-      "en": "Color of the button on the panel."
-     },
-     "opts": [
-      {
-       "v": "primary",
-       "ru": "Синяя",
-       "en": "Blue"
-      },
-      {
-       "v": "secondary",
-       "ru": "Серая",
-       "en": "Gray"
-      },
-      {
-       "v": "success",
-       "ru": "Зелёная",
-       "en": "Green"
-      },
-      {
-       "v": "danger",
-       "ru": "Красная",
-       "en": "Red"
-      }
-     ],
-     "def": "primary"
-    },
-    {
-     "key": "panel_color",
-     "kind": "color",
-     "kindLabel": {
-      "ru": "выбор цвета или свой HEX",
-      "en": "colour picker or custom HEX"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Цвет панели",
-      "en": "Panel color"
-     },
-     "desc": {
-      "ru": "Цвет полоски слева на панели тикетов.",
-      "en": "Color of the stripe on the left of the ticket panel."
-     },
-     "opts": [
-      {
-       "v": "#5865F2",
-       "ru": "Синий",
-       "en": "Blue"
-      },
-      {
-       "v": "#57F287",
-       "ru": "Зелёный",
-       "en": "Green"
-      },
-      {
-       "v": "#ED4245",
-       "ru": "Красный",
-       "en": "Red"
-      },
-      {
-       "v": "#FEE75C",
-       "ru": "Жёлтый",
-       "en": "Yellow"
-      },
-      {
-       "v": "#99AAB5",
-       "ru": "Серый",
-       "en": "Gray"
-      }
-     ],
-     "def": "#5865F2"
-    },
-    {
-     "key": "welcome_message",
-     "kind": "text",
-     "kindLabel": {
-      "ru": "текст (окно ввода)",
-      "en": "text (input window)"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Сообщение в тикете",
-      "en": "Ticket message"
-     },
-     "desc": {
-      "ru": "Первое сообщение в новом тикете. Можно использовать переменные вроде {{user_mention}}.",
-      "en": "First message in a new ticket. You can use variables like {{user_mention}}."
-     },
-     "max": 1000
-    }
-   ]
-  },
-  {
-   "id": "close",
-   "name": {
-    "ru": "Закрытие",
-    "en": "Closing"
+     "items": [
+       {
+         "key": "welcome_message",
+         "kind": "text",
+         "kindLabel": {
+           "ru": "текст (окно ввода)",
+           "en": "text (input window)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Сообщение в тикете",
+           "en": "Ticket message"
+         },
+         "desc": {
+           "ru": "Первое сообщение в новом тикете. Можно использовать переменные вроде {{user_mention}}.",
+           "en": "First message in a new ticket. You can use variables like {{user_mention}}."
+         },
+         "max": 1000
+       },
+       {
+         "key": "welcome_content",
+         "kind": "text",
+         "kindLabel": {
+           "ru": "текст (окно ввода)",
+           "en": "text (input window)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Текст рядом с упоминанием автора",
+           "en": "Text beside the author mention"
+         },
+         "desc": {
+           "ru": "Короткий текст в сообщении перед приветствием (например, Welcome).",
+           "en": "Short text in the message before the welcome embed (for example, Welcome)."
+         },
+         "max": 100,
+         "def": "Welcome"
+       },
+       {
+         "key": "welcome_footer",
+         "kind": "text",
+         "kindLabel": {
+           "ru": "текст (окно ввода)",
+           "en": "text (input window)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Подпись приветствия",
+           "en": "Welcome footer"
+         },
+         "desc": {
+           "ru": "Текст внизу приветствия нового тикета.",
+           "en": "Footer text on the new ticket welcome message."
+         },
+         "max": 200,
+         "def": "https://privett.github.io/Matrix/"
+       }
+     ]
    },
-   "items": [
-    {
-     "key": "close_action",
-     "kind": "choice",
-     "kindLabel": {
-      "ru": "выбор варианта",
-      "en": "option picker"
-     },
-     "req": false,
-     "cond": null,
+   {
+     "id": "queue",
      "name": {
-      "ru": "Действие при закрытии",
-      "en": "Action on close"
+       "ru": "Очередь",
+       "en": "Queue"
      },
-     "desc": {
-      "ru": "«Удалить канал» стирает канал после закрытия. «Закрыть и оставить» переименовывает его, переносит в категорию закрытых и забирает доступ у автора.",
-      "en": "“Delete channel” removes the channel. “Close and keep” renames it, moves it to the closed category and removes the author's access."
-     },
-     "opts": [
-      {
-       "v": "delete",
-       "ru": "Удалить канал",
-       "en": "Delete channel"
-      },
-      {
-       "v": "archive",
-       "ru": "Закрыть и оставить",
-       "en": "Close and keep"
-      }
-     ],
-     "def": "delete"
-    },
-    {
-     "key": "closed_category_id",
-     "kind": "channel",
-     "kindLabel": {
-      "ru": "выбор канала",
-      "en": "channel picker"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Категория закрытых",
-      "en": "Closed category"
-     },
-     "desc": {
-      "ru": "Куда переносить тикеты при действии «Закрыть и оставить». Если не задана, канал остаётся на месте.",
-      "en": "Where tickets go with “Close and keep”. If not set, the channel stays in place."
-     }
-    },
-    {
-     "key": "close_confirm",
-     "kind": "toggle",
-     "kindLabel": {
-      "ru": "переключатель Вкл/Выкл",
-      "en": "On/Off switch"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Подтверждение закрытия",
-      "en": "Close confirmation"
-     },
-     "desc": {
-      "ru": "Перед закрытием бот спросит «Ты уверен?». Защита от случайных нажатий.",
-      "en": "The bot asks “Are you sure?” before closing. Protects from accidental clicks."
-     },
-     "def": true
-    },
-    {
-     "key": "close_button_label",
-     "kind": "text",
-     "kindLabel": {
-      "ru": "текст (окно ввода)",
-      "en": "text (input window)"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Текст кнопки «Закрыть»",
-      "en": "Close button text"
-     },
-     "desc": {
-      "ru": "Надпись на кнопке внутри тикета.",
-      "en": "Label of the button inside the ticket."
-     },
-     "max": 80,
-     "def": "Закрыть"
-    },
-    {
-     "key": "close_button_emoji",
-     "kind": "emoji",
-     "kindLabel": {
-      "ru": "эмодзи (окно ввода)",
-      "en": "emoji (input window)"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Эмодзи кнопки «Закрыть»",
-      "en": "Close button emoji"
-     },
-     "desc": {
-      "ru": "Обычное (🔒) или кастомное <:name:id>. Пусто = без эмодзи.",
-      "en": "A normal one (🔒) or custom <:name:id>. Empty = no emoji."
-     },
-     "max": 60,
-     "def": "🔒"
-    },
-    {
-     "key": "close_button_style",
-     "kind": "btnstyle",
-     "kindLabel": {
-      "ru": "выбор цвета кнопки",
-      "en": "button colour picker"
-     },
-     "req": false,
-     "cond": null,
-     "name": {
-      "ru": "Цвет кнопки «Закрыть»",
-      "en": "Close button color"
-     },
-     "desc": {
-      "ru": "Цвет кнопки внутри тикета. Работает для новых тикетов, в старых кнопка остаётся прежней.",
-      "en": "Color of the button inside the ticket. Applies to new tickets only."
-     },
-     "opts": [
-      {
-       "v": "primary",
-       "ru": "Синяя",
-       "en": "Blue"
-      },
-      {
-       "v": "secondary",
-       "ru": "Серая",
-       "en": "Gray"
-      },
-      {
-       "v": "success",
-       "ru": "Зелёная",
-       "en": "Green"
-      },
-      {
-       "v": "danger",
-       "ru": "Красная",
-       "en": "Red"
-      }
-     ],
-     "def": "secondary"
-    }
-   ]
-  },
-  {
-   "id": "transcript",
-   "name": {
-    "ru": "Транскрипт",
-    "en": "Transcript"
+     "items": [
+       {
+         "key": "claim_enabled",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Очередь тикетов (взятие)",
+           "en": "Ticket queue (claiming)"
+         },
+         "desc": {
+           "ru": "Новый тикет не виден сотрудникам, пока кто-то его не возьмёт. Брать, вести, закрывать и открывать тикеты снова можно командой /ticket manage. После «Взять» тикет открывается только взявшему, а бот пишет в чате, кто принял тикет.",
+           "en": "A new ticket is hidden from staff until someone claims it. Claim, handle, close and reopen tickets with /ticket manage. After “Claim” the ticket becomes visible only to the person who took it, and the bot posts who accepted it."
+         },
+         "def": false
+       },
+       {
+         "key": "claim_role_ids",
+         "kind": "roles",
+         "kindLabel": {
+           "ru": "выбор ролей (несколько)",
+           "en": "role picker (multiple)"
+         },
+         "req": false,
+         "cond": "claim_enabled",
+         "name": {
+           "ru": "Кто может брать: роли",
+           "en": "Who can claim: roles"
+         },
+         "desc": {
+           "ru": "Участники этих ролей могут брать тикеты. Если роли и пользователи не выбраны, брать могут роли поддержки.",
+           "en": "Members of these roles can claim tickets. If no roles and no users are chosen, the support roles can claim."
+         }
+       },
+       {
+         "key": "claim_user_ids",
+         "kind": "users",
+         "kindLabel": {
+           "ru": "выбор пользователей (несколько)",
+           "en": "user picker (multiple)"
+         },
+         "req": false,
+         "cond": "claim_enabled",
+         "name": {
+           "ru": "Кто может брать: пользователи",
+           "en": "Who can claim: users"
+         },
+         "desc": {
+           "ru": "Отдельные пользователи, которые могут брать тикеты (в дополнение к ролям).",
+           "en": "Individual users who can claim tickets (in addition to the roles)."
+         }
+       },
+       {
+         "key": "queue_notify",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": "claim_enabled",
+         "name": {
+           "ru": "Уведомлять о новых тикетах",
+           "en": "Notify about new tickets"
+         },
+         "desc": {
+           "ru": "Отправлять уведомление, когда в очереди появляется новый тикет.",
+           "en": "Send a notification when a new ticket enters the queue."
+         },
+         "def": true
+       },
+       {
+         "key": "queue_notify_channel",
+         "kind": "channel",
+         "kindLabel": {
+           "ru": "выбор канала",
+           "en": "channel picker"
+         },
+         "req": false,
+         "cond": "queue_notify",
+         "name": {
+           "ru": "Канал уведомлений очереди",
+           "en": "Queue notification channel"
+         },
+         "desc": {
+           "ru": "Куда отправлять уведомления очереди. Если не выбран, используется лог-канал.",
+           "en": "Where queue notifications are sent. If not selected, the log channel is used."
+         }
+       },
+       {
+         "key": "queue_notify_ping_roles",
+         "kind": "roles",
+         "kindLabel": {
+           "ru": "выбор ролей (несколько)",
+           "en": "role picker (multiple)"
+         },
+         "req": false,
+         "cond": "queue_notify",
+         "name": {
+           "ru": "Роли для упоминания в уведомлении",
+           "en": "Roles to mention in the notification"
+         },
+         "desc": {
+           "ru": "Эти роли упоминаются в уведомлении о новом тикете. Пустой список никого не упоминает.",
+           "en": "These roles are mentioned in new-ticket notifications. An empty list does not mention anyone."
+         }
+       }
+     ]
    },
-   "items": [
-    {
-     "key": "transcript_enabled",
-     "kind": "toggle",
-     "kindLabel": {
-      "ru": "переключатель Вкл/Выкл",
-      "en": "On/Off switch"
-     },
-     "req": false,
-     "cond": null,
+   {
+     "id": "staff",
      "name": {
-      "ru": "Создавать транскрипт",
-      "en": "Create transcript"
+       "ru": "Сотрудники",
+       "en": "Staff"
      },
-     "desc": {
-      "ru": "При закрытии бот сохранит переписку в файл.",
-      "en": "On close the bot saves the conversation to a file."
-     },
-     "def": true
-    },
-    {
-     "key": "transcript_format",
-     "kind": "choice",
-     "kindLabel": {
-      "ru": "выбор варианта",
-      "en": "option picker"
-     },
-     "req": false,
-     "cond": null,
+     "items": [
+       {
+         "key": "viewer_role_ids",
+         "kind": "roles",
+         "kindLabel": {
+           "ru": "выбор ролей (несколько)",
+           "en": "role picker (multiple)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Роли только для чтения",
+           "en": "Read-only roles"
+         },
+         "desc": {
+           "ru": "Можно выбрать несколько ролей. Они видят тикеты и историю, но писать, реагировать и закрывать не могут.",
+           "en": "You can pick several roles. They can see tickets and history, but can't write, react or close."
+         }
+       },
+       {
+         "key": "blacklist",
+         "kind": "users",
+         "kindLabel": {
+           "ru": "выбор пользователей (несколько)",
+           "en": "user picker (multiple)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Чёрный список",
+           "en": "Blacklist"
+         },
+         "desc": {
+           "ru": "Эти пользователи не смогут создавать тикеты.",
+           "en": "These users won't be able to create tickets."
+         }
+       },
+       {
+         "key": "close_by_owner",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Автор может закрывать",
+           "en": "Authors can close tickets"
+         },
+         "desc": {
+           "ru": "Разрешить автору закрывать свой открытый тикет.",
+           "en": "Allow ticket authors to close their own open tickets."
+         },
+         "def": true
+       },
+       {
+         "key": "close_by_claimer",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Взявший тикет может закрывать",
+           "en": "Claimed-by staff can close"
+         },
+         "desc": {
+           "ru": "Разрешить сотруднику, который взял тикет, закрыть его.",
+           "en": "Allow the staff member who claimed a ticket to close it."
+         },
+         "def": true
+       },
+       {
+         "key": "close_by_support",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Поддержка может закрывать",
+           "en": "Support roles can close tickets"
+         },
+         "desc": {
+           "ru": "Разрешить участникам ролей поддержки закрывать тикеты.",
+           "en": "Allow members of support roles to close tickets."
+         },
+         "def": true
+       }
+     ]
+   },
+   {
+     "id": "admin",
      "name": {
-      "ru": "Формат транскрипта",
-      "en": "Transcript format"
+       "ru": "Админ-панель",
+       "en": "Admin panel"
      },
-     "desc": {
-      "ru": "HTML выглядит как чат Discord. TXT это простой текст. Можно оба.",
-      "en": "HTML looks like a Discord chat. TXT is plain text. You can pick both."
-     },
-     "opts": [
-      {
-       "v": "html",
-       "ru": "HTML",
-       "en": "HTML"
-      },
-      {
-       "v": "txt",
-       "ru": "TXT",
-       "en": "TXT"
-      },
-      {
-       "v": "both",
-       "ru": "HTML + TXT",
-       "en": "HTML + TXT"
-      }
-     ],
-     "def": "html"
-    },
-    {
-     "key": "transcript_to_log",
-     "kind": "toggle",
-     "kindLabel": {
-      "ru": "переключатель Вкл/Выкл",
-      "en": "On/Off switch"
-     },
-     "req": false,
-     "cond": null,
+     "items": [
+       {
+         "key": "admin_panel_role_ids",
+         "kind": "roles",
+         "kindLabel": {
+           "ru": "выбор ролей (несколько)",
+           "en": "role picker (multiple)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Роли с доступом к админ-панели",
+           "en": "Roles with admin panel access"
+         },
+         "desc": {
+           "ru": "Эти роли могут открыть /ticket admin и управлять тикетами. Владелец сервера имеет доступ всегда.",
+           "en": "These roles can open /ticket admin and manage tickets. The server owner always has access."
+         }
+       },
+       {
+         "key": "admin_panel_user_ids",
+         "kind": "users",
+         "kindLabel": {
+           "ru": "выбор пользователей (несколько)",
+           "en": "user picker (multiple)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Пользователи с доступом к админ-панели",
+           "en": "Users with admin panel access"
+         },
+         "desc": {
+           "ru": "Отдельные пользователи, которым разрешена админ-панель. Владелец сервера имеет доступ всегда.",
+           "en": "Individual users allowed to use the admin panel. The server owner always has access."
+         }
+       },
+       {
+         "key": "admin_can_release",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Отпускать чужие тикеты",
+           "en": "Release tickets claimed by others"
+         },
+         "desc": {
+           "ru": "Разрешить в админ-панели возвращать в очередь тикеты, взятые другими сотрудниками.",
+           "en": "Allow the admin panel to return tickets claimed by other staff to the queue."
+         },
+         "def": false
+       }
+     ]
+   },
+   {
+     "id": "close",
      "name": {
-      "ru": "Отправлять в лог-канал",
-      "en": "Send to log channel"
+       "ru": "Закрытие",
+       "en": "Closing"
      },
-     "desc": {
-      "ru": "Файл транскрипта прикрепляется к записи о закрытии в лог-канале.",
-      "en": "The transcript file is attached to the close entry in the log channel."
-     },
-     "def": true
-    },
-    {
-     "key": "dm_transcript",
-     "kind": "toggle",
-     "kindLabel": {
-      "ru": "переключатель Вкл/Выкл",
-      "en": "On/Off switch"
-     },
-     "req": false,
-     "cond": null,
+     "items": [
+       {
+         "key": "close_action",
+         "kind": "choice",
+         "kindLabel": {
+           "ru": "выбор варианта",
+           "en": "option picker"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Действие при закрытии",
+           "en": "Action on close"
+         },
+         "desc": {
+           "ru": "«Удалить канал» стирает канал после закрытия. «Закрыть и оставить» переименовывает его, переносит в категорию закрытых и забирает доступ у автора.",
+           "en": "“Delete channel” removes the channel. “Close and keep” renames it, moves it to the closed category and removes the author's access."
+         },
+         "opts": [
+           {
+             "v": "delete",
+             "ru": "Удалить канал",
+             "en": "Delete channel"
+           },
+           {
+             "v": "archive",
+             "ru": "Закрыть и оставить",
+             "en": "Close and keep"
+           }
+         ],
+         "def": "delete"
+       },
+       {
+         "key": "closed_category_id",
+         "kind": "channel",
+         "kindLabel": {
+           "ru": "выбор канала",
+           "en": "channel picker"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Категория закрытых",
+           "en": "Closed category"
+         },
+         "desc": {
+           "ru": "Куда переносить тикеты при действии «Закрыть и оставить». Если не задана, канал остаётся на месте.",
+           "en": "Where tickets go with “Close and keep”. If not set, the channel stays in place."
+         }
+       },
+       {
+         "key": "closed_author_access",
+         "kind": "choice",
+         "kindLabel": {
+           "ru": "выбор варианта",
+           "en": "option picker"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Доступ автора к архиву",
+           "en": "Author access to archived tickets"
+         },
+         "desc": {
+           "ru": "Определяет, сможет ли автор читать тикет после закрытия с сохранением канала.",
+           "en": "Controls whether the author can read a ticket after it is closed and kept."
+         },
+         "opts": [
+           {
+             "v": "none",
+             "ru": "Не видит канал",
+             "en": "Cannot see the channel"
+           },
+           {
+             "v": "read",
+             "ru": "Может читать",
+             "en": "Can read"
+           }
+         ],
+         "def": "none"
+       },
+       {
+         "key": "close_confirm",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Подтверждение закрытия",
+           "en": "Close confirmation"
+         },
+         "desc": {
+           "ru": "Перед закрытием бот спросит «Ты уверен?». Защита от случайных нажатий.",
+           "en": "The bot asks “Are you sure?” before closing. Protects from accidental clicks."
+         },
+         "def": true
+       },
+       {
+         "key": "close_button_label",
+         "kind": "text",
+         "kindLabel": {
+           "ru": "текст (окно ввода)",
+           "en": "text (input window)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Текст кнопки «Закрыть»",
+           "en": "Close button text"
+         },
+         "desc": {
+           "ru": "Надпись на кнопке внутри тикета.",
+           "en": "Label of the button inside the ticket."
+         },
+         "max": 80,
+         "def": "Закрыть"
+       },
+       {
+         "key": "close_button_emoji",
+         "kind": "emoji",
+         "kindLabel": {
+           "ru": "эмодзи (окно ввода)",
+           "en": "emoji (input window)"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Эмодзи кнопки «Закрыть»",
+           "en": "Close button emoji"
+         },
+         "desc": {
+           "ru": "Обычное (🔒) или кастомное <:name:id>. Пусто = без эмодзи.",
+           "en": "A normal one (🔒) or custom <:name:id>. Empty = no emoji."
+         },
+         "max": 60,
+         "def": "🔒"
+       },
+       {
+         "key": "close_button_style",
+         "kind": "btnstyle",
+         "kindLabel": {
+           "ru": "выбор цвета кнопки",
+           "en": "button colour picker"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Цвет кнопки «Закрыть»",
+           "en": "Close button color"
+         },
+         "desc": {
+           "ru": "Цвет кнопки внутри тикета. Работает для новых тикетов, в старых кнопка остаётся прежней.",
+           "en": "Color of the button inside the ticket. Applies to new tickets only."
+         },
+         "opts": [
+           {
+             "v": "primary",
+             "ru": "Синяя",
+             "en": "Blue"
+           },
+           {
+             "v": "secondary",
+             "ru": "Серая",
+             "en": "Gray"
+           },
+           {
+             "v": "success",
+             "ru": "Зелёная",
+             "en": "Green"
+           },
+           {
+             "v": "danger",
+             "ru": "Красная",
+             "en": "Red"
+           }
+         ],
+         "def": "secondary"
+       }
+     ]
+   },
+   {
+     "id": "transcript",
      "name": {
-      "ru": "Отправлять автору в ЛС",
-      "en": "Send to author in DMs"
+       "ru": "Транскрипт",
+       "en": "Transcript"
      },
-     "desc": {
-      "ru": "Автор тикета получит файл в личные сообщения (если у него открыты ЛС).",
-      "en": "The ticket author gets the file in DMs (if their DMs are open)."
-     },
-     "def": false
-    }
-   ]
-  }
+     "items": [
+       {
+         "key": "transcript_enabled",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Создавать транскрипт",
+           "en": "Create transcript"
+         },
+         "desc": {
+           "ru": "При закрытии бот сохранит переписку в файл.",
+           "en": "On close the bot saves the conversation to a file."
+         },
+         "def": false
+       },
+       {
+         "key": "transcript_format",
+         "kind": "choice",
+         "kindLabel": {
+           "ru": "выбор варианта",
+           "en": "option picker"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Формат транскрипта",
+           "en": "Transcript format"
+         },
+         "desc": {
+           "ru": "HTML выглядит как чат Discord. TXT это простой текст. Можно оба.",
+           "en": "HTML looks like a Discord chat. TXT is plain text. You can pick both."
+         },
+         "opts": [
+           {
+             "v": "html",
+             "ru": "HTML",
+             "en": "HTML"
+           },
+           {
+             "v": "txt",
+             "ru": "TXT",
+             "en": "TXT"
+           },
+           {
+             "v": "both",
+             "ru": "HTML + TXT",
+             "en": "HTML + TXT"
+           }
+         ],
+         "def": "html"
+       },
+       {
+         "key": "transcript_to_log",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Отправлять в лог-канал",
+           "en": "Send to log channel"
+         },
+         "desc": {
+           "ru": "Файл транскрипта прикрепляется к записи о закрытии в лог-канале.",
+           "en": "The transcript file is attached to the close entry in the log channel."
+         },
+         "def": true
+       },
+       {
+         "key": "dm_transcript",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Отправлять автору в ЛС",
+           "en": "Send to author in DMs"
+         },
+         "desc": {
+           "ru": "Автор тикета получит файл в личные сообщения (если у него открыты ЛС).",
+           "en": "The ticket author gets the file in DMs (if their DMs are open)."
+         },
+         "def": false
+       },
+       {
+         "key": "transcript_embed_images",
+         "kind": "toggle",
+         "kindLabel": {
+           "ru": "переключатель Вкл/Выкл",
+           "en": "On/Off switch"
+         },
+         "req": false,
+         "cond": null,
+         "name": {
+           "ru": "Встраивать изображения в HTML",
+           "en": "Embed images in HTML"
+         },
+         "desc": {
+           "ru": "Встраивать изображения и аватары в HTML-файл, чтобы они не зависели от срока жизни ссылок Discord.",
+           "en": "Embed images and avatars in the HTML file so they do not depend on Discord link expiry."
+         },
+         "def": true
+       }
+     ]
+   }
  ],
  "required": [
   "category_id",
