@@ -1650,26 +1650,6 @@ const TD = {
          },
          "max": 100,
          "def": "Welcome"
-       },
-       {
-         "key": "welcome_footer",
-         "kind": "text",
-         "kindLabel": {
-           "ru": "текст (окно ввода)",
-           "en": "text (input window)"
-         },
-         "req": false,
-         "cond": null,
-         "name": {
-           "ru": "Подпись приветствия",
-           "en": "Welcome footer"
-         },
-         "desc": {
-           "ru": "Текст внизу приветствия нового тикета.",
-           "en": "Footer text on the new ticket welcome message."
-         },
-         "max": 200,
-         "def": "https://privett.github.io/Matrix/"
        }
      ]
    },
